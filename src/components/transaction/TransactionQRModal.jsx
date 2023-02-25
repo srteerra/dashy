@@ -22,7 +22,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
     const loadOff = () => {
         setModalOpen(false);
-        setHandleClick(!handleClick);
+        setHandleClick(false);
     }
 
     useEffect(() => {
