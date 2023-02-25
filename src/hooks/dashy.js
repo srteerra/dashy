@@ -16,7 +16,7 @@ export const useDashy = () => {
   const [avatar, setAvatar] = useState(
     "https://images.pexels.com/photos/4519122/pexels-photo-4519122.jpeg?auto=compress&cs=tinysrgb&w=1600"
   );
-  const [userAddress, setUserAddress] = useState("11111");
+  const [userAddress, setUserAddress] = useState("");
   const [amount, setAmount] = useState(0);
   const [receiver, setReceiver] = useState("");
   const [transactionPurpose, setTransactionPurpose] = useState("");
@@ -25,6 +25,14 @@ export const useDashy = () => {
   const { connected, publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
 
+  // Setting the user address if the wallet is connected
+  useEffect(() => {
+    if (connected) {
+      setUserAddress(publicKey.toString());
+    }
+  }, [connected]);
+
+  // Transaction history
   const useGetLocalStorage = (storageKey, fallbackState) => {
     const [value, setValue] = useState(
       JSON.parse(localStorage.getItem(storageKey)) ?? fallbackState
@@ -42,13 +50,7 @@ export const useDashy = () => {
     []
   );
 
-  // Setting the user address if the wallet is connected
-  useEffect(() => {
-    if (connected) {
-      setUserAddress(publicKey.toString());
-    }
-  }, [connected, publicKey]);
-
+  // Transaction
   const makeTransaction = async (fromWallet, toWallet, amount, reference) => {
     console.log(fromWallet);
     const network = WalletAdapterNetwork.Devnet;

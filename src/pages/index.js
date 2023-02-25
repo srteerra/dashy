@@ -11,6 +11,7 @@ import { Transaction } from "../data/Transaction";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
+  const [qrCode, setQrCode] = useState(false);
 
   const {
     connected,
@@ -25,16 +26,25 @@ const Home = () => {
   return (
     <div className="flex min-h-screen ">
       <header className="flex w-[250px] flex-col bg-[#0bb534] p-12">
-        <Profile
-          setModalOpen={setTransactionQRModalOpen}
-          avatar={avatar}
-          userAddress={userAddress}
-        />
+        {connected ? (
+          <Profile
+            setModalOpen={setTransactionQRModalOpen}
+            avatar={avatar}
+            userAddress={userAddress}
+          />
+        ) : (
+          <Profile
+            setModalOpen={setTransactionQRModalOpen}
+            avatar={avatar}
+            userAddress={"Not connected"}
+          />
+        )}
         <TransactionQRModal
           modalOpen={transactionQRModalOpen}
           setModalOpen={setTransactionQRModalOpen}
           userAddress={userAddress}
           myKey={publicKey}
+          setQrCode={setQrCode}
         />
 
         <NavMenu connected={connected} publicKey={publicKey} />
@@ -49,7 +59,13 @@ const Home = () => {
       <main className="flex flex-1 flex-col">
         <SearchBar />
 
-        <TransactionList connected={connected} transactions={transactions} />
+        {connected ? (
+          <TransactionList connected={connected} transactions={transactions} />
+        ) : (
+          <h1 className="mt-10 text-center text-2xl">
+            Connect your wallet to see your transactions
+          </h1>
+        )}
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 
 const Modal = ({ modalOpen, setModalOpen, children }) => {
     const closeModal = () => {
-        setModalOpen(false)
+        setModalOpen(true)
     }
     
     return (
