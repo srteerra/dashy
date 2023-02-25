@@ -1,38 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Artboard_1_copy](https://user-images.githubusercontent.com/74383100/221329750-fabcf316-0e0c-4df5-873f-880295185b89.png)
 
-## Getting Started
+# Dashy
 
-First, run the development server:
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![](https://img.shields.io/github/stars/srteerra/dashy)![](https://img.shields.io/github/forks/srteerra/dashy)
 
+
+# Table of contents
+- [Description ](#Description)
+- [Roadmap](#roadmap)
+- [Built with](#built-with)
+- [Workflow](#workflow)
+- [Screenshots](#screenshots)
+- [Authors](#authors)
+- [See our Demo](#demo-on-figma)
+- [Quick start](#quick-start)
+- [Requirements](#requirements)
+
+# Description
+
+Dashy is a decentralized platform built on the solana blockchain that allows users to streamline money transfers through the use of easily accessible QRs.
+
+
+# RoadMap
+
+
+ # Built with
+- [React](https://es.reactjs.org/) - React helps you create interactive user interfaces easily. Design simple views for each state in your application, and React will take care of efficiently updating and rendering the correct components when data changes.
+- [Next.js](https://nextjs.org/) - Next.js is a framework that allows developers to create single-page applications and high-performance web applications through server-side rendering.
+- [Tailwind](https://tailwindcss.com/) - Tailwind is a CSS (Cascading Style Sheets) framework with predefined classes that you can use to build and design web pages directly in your markup. It allows you to write CSS in your HTML in the form of predefined classes.
+- [Sanity.io](https://www.sanity.io/) - Sanity is the platform for structured content that powers remarkable digital experiences.
+- [Create Next.js app]() - The easiest way to get started with Next.js is by using create-next-app. This CLI tool enables you to quickly start building a new Next.js application, with everything set up for you.
+-  [Node.js](https://nodejs.org/es/) - As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
+
+
+
+# WorkFlow
+
+
+
+# Screenshots
+
+
+# Authors
+
+- [@srteerra](https://www.github.com/srteerra) - Angel Lopez
+- [@Guapura89](https://www.github.com/Guapura89) - Carlos Sanchez
+- [@jonocrod12](https://github.com/jonocrod12) - Jonathan Ocampo
+
+# Demo on Figma
+[Dashy Board](https://www.figma.com/file/OvAtTVdlpcAewVzKz7dpsD/Dashy?node-id=1%3A2&t=giryKPyNeTkdZawU-1)
+
+# Quick start
+Here is what you need to run Dashy locally:
+#### Requirements: 
+ - A Web Browser such [Firefox](https://www.mozilla.org/en-US/firefox/new/) or [Google Chrome](https://www.google.com/intl/en/chrome/).
+ - [Phantom](https://phantom.app/download) extension.
+ - [Node.js](https://nodejs.org/es/) ^ 16.0.0 
+
+## Installation:
+### 1. First you need to create a folder, where you will save the project. (Optional)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+mkdir Dashy
+```
+### 2. Move on terminal to the new folder.
+```bash
+cd Dashy/
+```
+### 3. Clone the repository
+```bash
+git clone https://github.com/srteerra/dashy.git
+```
+### 4. Move on terminal to the new repo folder.
+```bash
+cd Dashy
+```
+### 5. Install dependences with:
+```bash
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### And there you have, Bitcoffee locally!!
+### For development environment
+Execute the following command:
+```bash
+npm run dev
+```
+It may take a few minutes to set up the application, so stay calm!
+#### The default port is **8080**
+```bash
+http:/localhost:8080/
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Project Structure
