@@ -1,4 +1,3 @@
-
 const Action = ({ setModalOpen }) => {
 
     const onNewTransaction = () => {
@@ -8,10 +7,10 @@ const Action = ({ setModalOpen }) => {
     return (
         <div>
             <button onClick={onNewTransaction} className="w-full rounded-lg bg-[#16d542] py-3 hover:bg-opacity-70">
-                <span className="font-medium text-white">New</span>
+                <span className="font-medium text-white">Create a Party</span>
             </button>
         </div>
     );
 }
 
-export {Action};
+export default Action;

@@ -25,4 +25,4 @@ const Modal = ({ modalOpen, setModalOpen, children }) => {
     );
 }
 
-export {Modal};
+export default Modal;

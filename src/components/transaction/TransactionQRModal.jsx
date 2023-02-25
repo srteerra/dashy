@@ -1,12 +1,12 @@
-import { Modal } from "../Modal";
-import { truncate } from "@/utils/String";
+import Modal from "../Modal";
+import { truncate } from "@/utils/string";
 import { createQR, encodeURL, findReference, validateTransfer, FindReferenceError, ValidateTransferError } from "@solana/pay";
 import { PublicKey, Keypair } from '@solana/web3.js';
 import BigNumber from 'bignumber.js';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useEffect, useRef, useState } from 'react';
 
-const TransactionQRMOdal = ({ modalOpen, setModalOpen, userAddress }) => {
+const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress }) => {
     
     const loadQr = () => {
 
@@ -31,4 +31,4 @@ const TransactionQRMOdal = ({ modalOpen, setModalOpen, userAddress }) => {
     );
 }
 
-export {TransactionQRMOdal};
+export default TransactionQRModal;

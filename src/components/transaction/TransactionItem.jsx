@@ -19,4 +19,4 @@ const TransactionItem = ({ id, to, description, transactionDate, amount, toggleT
     );
 }
 
-export {TransactionItem};
+export default TransactionItem;

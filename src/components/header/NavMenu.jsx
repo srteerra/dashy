@@ -2,8 +2,12 @@ import { ClockIcon, CurrencyDollarIcon, UserCircleIcon, Cog6ToothIcon } from '@h
 import { truncate } from '../../utils/string';
 import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 const NavMenu = () => {
+
+    const connected = false;
+
     const menus = [
         {
             icon: ClockIcon,
@@ -12,7 +16,12 @@ const NavMenu = () => {
         },
         {
             icon: CurrencyDollarIcon,
-            item: 'Cash Card',
+            item: 'Parties',
+            current: false,
+        },
+        {
+            icon: Cog6ToothIcon,
+            item: 'Inbox',
             current: false,
         },
         {
@@ -48,4 +57,4 @@ const NavMenuItem = ({ Icon, item, current, action }) => {
     )
 }
 
-export {NavMenu};
+export default NavMenu;

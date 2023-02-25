@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { CheckBadgeIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
-import { capitalize } from '../../utils/string';
+import { capitalize } from '../../utils/string.js';
 import Modal from '../Modal';
 
-const TransationDetailModal = ({ currentTransaction, modalOpen, setModalOpen }) => {
+const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen }) => {
     return (
         <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
             <div className="space-y-20">
@@ -94,4 +94,4 @@ const TransactionFooter = () => {
 }
 
 
-export {TransationDetailModal};
+export default TransactionDetailModal;

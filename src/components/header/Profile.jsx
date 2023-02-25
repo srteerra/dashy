@@ -20,4 +20,4 @@ const Profile = ({ setModalOpen, avatar, userAddress }) => {
     );
 }
 
-export {Profile};
+export default Profile;

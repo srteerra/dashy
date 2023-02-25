@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import TransactionDetailModal from './TransactionDetailModal';
 import TransactionItem from './TransactionItem';
 
-const TransactionList = () => {
+const TransactionList = ({ transactions }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [currentTransactionID, setCurrentTransactionID] = useState(null);
     const currentTransaction = useMemo(() => transactions.find((transaction) => transaction.id === currentTransactionID), [currentTransactionID]);
@@ -28,4 +28,4 @@ const TransactionList = () => {
     );
 }
 
-export {TransactionList};
+export default TransactionList;

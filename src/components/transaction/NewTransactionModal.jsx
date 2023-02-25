@@ -59,4 +59,4 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
     );
 }
 
-export {NewTransactionModal};
+export default NewTransactionModal;
