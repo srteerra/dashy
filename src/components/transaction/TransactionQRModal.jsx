@@ -131,7 +131,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
                     <p className="text-sm font-light text-gray-600">Scan to pay ${truncate(userAddress)}</p>
 
-                    <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#16d542] py-3 hover:bg-opacity-70">
+                    <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
                     </button>
 
