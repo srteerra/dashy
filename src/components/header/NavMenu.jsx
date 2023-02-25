@@ -4,9 +4,8 @@ import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
-const NavMenu = () => {
+const NavMenu = ({ connected, publicKey }) => {
 
-    const connected = false;
 
     const menus = [
         {
@@ -38,10 +37,9 @@ const NavMenu = () => {
                     <NavMenuItem key={i} Icon={icon} item={item} current={current} action={action} />
                 ))}
                 <li>
-                    <button className="flex space-x-3">
-                        <UserCircleIcon style={{ height: 24, width: 24, color: '#15ec3c' }} />
-                        <span className="text-sm font-semibold text-[#15ec3c]">{connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
-                    </button>
+                    <WalletMultiButton>
+                        <span className='text-sm'>{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
+                    </WalletMultiButton>
                 </li>
             </ul>
         </nav >
