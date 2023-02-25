@@ -28,7 +28,6 @@ Dashy is a decentralized platform built on the solana blockchain that allows use
  # Built with
 - [React](https://es.reactjs.org/) - React helps you create interactive user interfaces easily. Design simple views for each state in your application, and React will take care of efficiently updating and rendering the correct components when data changes.
 - [Next.js](https://nextjs.org/) - Next.js is a framework that allows developers to create single-page applications and high-performance web applications through server-side rendering.
-- [Web3.js](https://web3js.readthedocs.io/en/v1.8.0/) - Web3.js is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP, IPC or WebSocket.
 - [Tailwind](https://tailwindcss.com/) - Tailwind is a CSS (Cascading Style Sheets) framework with predefined classes that you can use to build and design web pages directly in your markup. It allows you to write CSS in your HTML in the form of predefined classes.
 - [Sanity.io](https://www.sanity.io/) - Sanity is the platform for structured content that powers remarkable digital experiences.
 - [Create Next.js app]() - The easiest way to get started with Next.js is by using create-next-app. This CLI tool enables you to quickly start building a new Next.js application, with everything set up for you.
