@@ -18,6 +18,7 @@ const Home = () => {
     publicKey,
     avatar,
     userAddress,
+    userName,
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
