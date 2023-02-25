@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <div className="flex min-h-screen ">
-      <header className="flex w-[250px] flex-col bg-[#0bb534] p-12">
+      <header className="flex w-[270px] flex-col bg-[#3F2568] p-12">
         {connected ? (
           <Profile
             setModalOpen={setTransactionQRModalOpen}
