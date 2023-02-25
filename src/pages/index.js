@@ -10,6 +10,7 @@ import TransactionQRModal from "../components/transaction/TransactionQRModal";
 import { Transaction } from "../data/Transaction";
 import Image from "next/image";
 import logoIcon from "../assets/icon-white.png";
+import logoHorizontal from "../assets/hor-white.png";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
@@ -29,28 +30,11 @@ const Home = () => {
   return (
     <div className="flex min-h-screen ">
       <header className="flex w-[270px] flex-col justify-between bg-[#3F2568] p-12">
-        <div>
-          {connected ? (
-            <Profile
-              setModalOpen={setTransactionQRModalOpen}
-              avatar={avatar}
-              userAddress={userAddress}
-              userName={userName}
-            />
-          ) : (
-            <Profile
-              setModalOpen={setTransactionQRModalOpen}
-              avatar={avatar}
-              userAddress={"Not connected"}
-            />
-          )}
-
-          <TransactionQRModal
-            modalOpen={transactionQRModalOpen}
-            setModalOpen={setTransactionQRModalOpen}
-            userAddress={userAddress}
-            myKey={publicKey}
-            setQrCode={setQrCode}
+        <div className="grid w-full place-items-center">
+          <Image
+            src={logoHorizontal}
+            alt="Logo"
+            className="w-full max-w-[200px]"
           />
         </div>
 
@@ -80,15 +64,46 @@ const Home = () => {
       </header>
 
       <main className="flex flex-1 flex-col">
-        <SearchBar />
+        <div className="w-full bg-[#7A49CA] py-20">
+          <div>
+            {connected ? (
+              <Profile
+                setModalOpen={setTransactionQRModalOpen}
+                avatar={avatar}
+                userAddress={userAddress}
+                userName={userName}
+              />
+            ) : (
+              <Profile
+                setModalOpen={setTransactionQRModalOpen}
+                avatar={avatar}
+                userAddress={"Not connected"}
+              />
+            )}
 
-        {connected ? (
-          <TransactionList connected={connected} transactions={transactions} />
-        ) : (
-          <h1 className="mt-10 text-center text-2xl">
-            Connect your wallet to see your transactions
-          </h1>
-        )}
+            <TransactionQRModal
+              modalOpen={transactionQRModalOpen}
+              setModalOpen={setTransactionQRModalOpen}
+              userAddress={userAddress}
+              myKey={publicKey}
+              setQrCode={setQrCode}
+            />
+          </div>
+        </div>
+        <div>
+          <SearchBar />
+
+          {connected ? (
+            <TransactionList
+              connected={connected}
+              transactions={transactions}
+            />
+          ) : (
+            <h1 className="mt-10 text-center text-2xl">
+              Connect your wallet to see your transactions
+            </h1>
+          )}
+        </div>
       </main>
     </div>
   );
