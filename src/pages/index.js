@@ -32,6 +32,7 @@ const Home = () => {
             setModalOpen={setTransactionQRModalOpen}
             avatar={avatar}
             userAddress={userAddress}
+            userName={userName}
           />
         ) : (
           <Profile
@@ -47,10 +48,12 @@ const Home = () => {
           myKey={publicKey}
           setQrCode={setQrCode}
         />
-
         <NavMenu connected={connected} publicKey={publicKey} />
-
-        <Action setModalOpen={setNewTransactionModalOpen} />
+        {connected ? (
+          <Action setModalOpen={setNewTransactionModalOpen} />
+        ) : (
+          <></>
+        )}
         <NewTransactionModal
           modalOpen={newTransactionModalOpen}
           setModalOpen={setNewTransactionModalOpen}

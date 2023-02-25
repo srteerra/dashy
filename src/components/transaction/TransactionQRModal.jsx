@@ -77,13 +77,13 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                             from: {
                                 name: recipient,
                                 handle: recipient,
-                                avatar: getAvatarUrl(recipient.toString()),
+                                avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: true,
                             },
                             to: {
                                 name: reference,
                                 handle: '-',
-                                avatar: getAvatarUrl(reference.toString()),
+                                avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: false,
                             },
                             description: 'User sent you SOL through Phantom App!',
