@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import { useDashy } from '@/hooks/dashy';
+import { useDashy } from '../../hooks/dashy';
 
 const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
     const {doTransaction, amount, setAmount, receiver, setReceiver, transactionPurpose, setTransactionPurpose} = useDashy();
@@ -22,8 +22,9 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
             amount,
             receiver,
             transactionPurpose
-        })
+        });
         // Clear states
+        setModalOpen(false);
         setAmount(0);
         setReceiver("");
         setTransactionPurpose("");
