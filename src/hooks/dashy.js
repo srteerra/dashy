@@ -11,12 +11,14 @@ import {
   Transaction,
 } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
+import { client } from "../../lib/sanityClient";
 
 export const useDashy = () => {
   const [avatar, setAvatar] = useState(
     "https://images.pexels.com/photos/4519122/pexels-photo-4519122.jpeg?auto=compress&cs=tinysrgb&w=1600"
   );
-  const [userAddress, setUserAddress] = useState("11111");
+  const [userName, setUserName] = useState("");
+  const [userAddress, setUserAddress] = useState("");
   const [amount, setAmount] = useState(0);
   const [receiver, setReceiver] = useState("");
   const [transactionPurpose, setTransactionPurpose] = useState("");
@@ -46,6 +48,27 @@ export const useDashy = () => {
   useEffect(() => {
     if (connected) {
       setUserAddress(publicKey.toString());
+      const userDoc = {
+        _type: "users",
+        _id: publicKey.toString(),
+        userName: "Unnamed",
+        userMessage: "",
+        userVerify: false,
+        userAddress: publicKey.toString(),
+        // userAvatar: {
+        //   _type: "image",
+        //   asset: {
+        //     _type: "reference",
+        //     _ref: "https://news.bit2me.com/wp-content/uploads/2022/08/nft-marche.jpg",
+        //   },
+        // },
+      };
+
+      client.createIfNotExists(userDoc);
+      client.getDocument(publicKey.toString()).then((users) => {
+        console.log(users);
+        setUserName(users.userName);
+      });
     }
   }, [connected, publicKey]);
 
@@ -125,6 +148,7 @@ export const useDashy = () => {
     connected,
     publicKey,
     userAddress,
+    userName,
     avatar,
     doTransaction,
     amount,

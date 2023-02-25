@@ -1,6 +1,6 @@
 import { truncate } from "../../utils/string";
 
-const Profile = ({ setModalOpen, avatar, userAddress }) => {
+const Profile = ({ setModalOpen, avatar, userAddress, userName }) => {
     const onProfileOpen = () => {
         setModalOpen(true)
     }
@@ -12,9 +12,9 @@ const Profile = ({ setModalOpen, avatar, userAddress }) => {
             </div>
 
             <div className="flex flex-col items-center space-y-1">
-                <p className="font-semibold text-white">{truncate(userAddress)}</p>
+                <p className="font-semibold text-white">{userName}</p>
 
-                <p className="text-sm font-light italic text-gray-100">${truncate(userAddress)}</p>
+                <p className="text-sm font-light italic text-gray-100">{truncate(userAddress)}</p>
             </div>
         </div>
     );

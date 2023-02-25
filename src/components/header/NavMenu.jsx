@@ -5,8 +5,6 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 const NavMenu = ({ connected, publicKey }) => {
-
-
     const menus = [
         {
             icon: ClockIcon,

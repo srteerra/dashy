@@ -17,6 +17,7 @@ const Home = () => {
     publicKey,
     avatar,
     userAddress,
+    userName,
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
@@ -29,6 +30,7 @@ const Home = () => {
           setModalOpen={setTransactionQRModalOpen}
           avatar={avatar}
           userAddress={userAddress}
+          userName={userName}
         />
         <TransactionQRModal
           modalOpen={transactionQRModalOpen}
