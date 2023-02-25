@@ -13,20 +13,41 @@ import {
 import BigNumber from "bignumber.js";
 
 export const useDashy = () => {
+  const [avatar, setAvatar] = useState(
+    "https://images.pexels.com/photos/4519122/pexels-photo-4519122.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  );
   const [userAddress, setUserAddress] = useState("11111");
   const [amount, setAmount] = useState(0);
   const [receiver, setReceiver] = useState("");
   const [transactionPurpose, setTransactionPurpose] = useState("");
+  const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false);
 
   const { connected, publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
+
+  const useGetLocalStorage = (storageKey, fallbackState) => {
+    const [value, setValue] = useState(
+      JSON.parse(localStorage.getItem(storageKey)) ?? fallbackState
+    );
+
+    useEffect(() => {
+      localStorage.setItem(storageKey, JSON.stringify(value));
+    }, [value, setValue, storageKey]);
+
+    return [value, setValue];
+  };
+
+  const [transactions, setTransactions] = useGetLocalStorage(
+    "transactions",
+    []
+  );
 
   // Setting the user address if the wallet is connected
   useEffect(() => {
     if (connected) {
       setUserAddress(publicKey.toString());
     }
-  }, [connected]);
+  }, [connected, publicKey]);
 
   const makeTransaction = async (fromWallet, toWallet, amount, reference) => {
     console.log(fromWallet);
@@ -59,12 +80,10 @@ export const useDashy = () => {
     return transaction;
   };
 
-  const doTransaction = async (amount, receiver, transactionPurpose) => {
+  const doTransaction = async ({ amount, receiver, transactionPurpose }) => {
     const fromWallet = publicKey;
-    const toWallet = new PublicKey(
-      "ou7b5deTXpwgAGEQMfmGR8yo3th2UeBEZdLCHv51yZx"
-    );
-    const bnAmount = new BigNumber(1);
+    const toWallet = new PublicKey(receiver);
+    const bnAmount = new BigNumber(amount);
     const reference = Keypair.generate().publicKey;
     const transaction = await makeTransaction(
       fromWallet,
@@ -75,12 +94,38 @@ export const useDashy = () => {
 
     const confirm = await sendTransaction(transaction, connection);
     console.log(confirm);
+
+    const getNewId = (transactions.length + 1).toString();
+    const newTransaction = {
+      id: getNewId,
+      from: {
+        name: publicKey,
+        handle: publicKey,
+        avatar: avatar,
+        verified: true,
+      },
+      to: {
+        name: receiver,
+        handle: "-",
+        avatar: avatar,
+        verified: false,
+      },
+      description: transactionPurpose,
+      transactionDate: new Date(),
+      status: "Completed",
+      amount: amount,
+      source: "-",
+      identifier: "-",
+    };
+    setNewTransactionModalOpen(false);
+    setTransactions([newTransaction, ...transactions]);
   };
 
   return {
     connected,
     publicKey,
     userAddress,
+    avatar,
     doTransaction,
     amount,
     setAmount,
@@ -88,5 +133,9 @@ export const useDashy = () => {
     setReceiver,
     transactionPurpose,
     setTransactionPurpose,
+    transactions,
+    setTransactions,
+    newTransactionModalOpen,
+    setNewTransactionModalOpen,
   };
 };

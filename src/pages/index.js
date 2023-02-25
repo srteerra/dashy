@@ -10,12 +10,17 @@ import TransactionQRModal from "../components/transaction/TransactionQRModal";
 import { Transaction } from "../data/Transaction";
 
 const Home = () => {
-  const [avatar, setAvatar] = useState(
-    "https://images.pexels.com/photos/4519122/pexels-photo-4519122.jpeg?auto=compress&cs=tinysrgb&w=1600"
-  );
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
-  const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false);
-  const { connected, publicKey, userAddress } = useDashy();
+
+  const {
+    connected,
+    publicKey,
+    avatar,
+    userAddress,
+    transactions,
+    newTransactionModalOpen,
+    setNewTransactionModalOpen,
+  } = useDashy();
 
   return (
     <div className="flex min-h-screen ">
@@ -44,7 +49,7 @@ const Home = () => {
       <main className="flex flex-1 flex-col">
         <SearchBar />
 
-        <TransactionList connected={connected} transactions={Transaction} />
+        <TransactionList connected={connected} transactions={transactions} />
       </main>
     </div>
   );
