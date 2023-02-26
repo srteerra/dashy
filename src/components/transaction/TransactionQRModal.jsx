@@ -10,6 +10,8 @@ import { useEffect, useRef, useState } from 'react';
 const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode }) => {
     const qrRef = useRef();
     const [handleClick, setHandleClick] = useState(false);
+    const [amountInput, setAmountInput] = useState("");
+    const [messageInput, setMessageInput] = useState("");
     const { transactions, setTransactions } = useDashy();
 
     const { connection } = useConnection();
@@ -28,11 +30,12 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
     useEffect(() => {
         if(userAddress != ''){
             const recipient = new PublicKey(userAddress);
-            const amount = new BigNumber("1");
+            const amount = new BigNumber(amountInput);
             const reference = Keypair.generate().publicKey;
             const label = 'Solana Pay';
-            const message = 'Thanks for help me!';
-
+            const message = messageInput;
+            console.log(amount)
+            console.log(message)
             const urlParams = {
                 recipient,
                 amount,
@@ -43,7 +46,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
             const urlEncoded = encodeURL(urlParams);
 
-            const qr = createQR(urlEncoded, 488, 'transparent');
+            const qr = createQR(urlEncoded, 350, 'transparent');
             if (qrRef.current && amount.isGreaterThan(0)) {
                 qrRef.current.innerHTML = '';
                 qr.append(qrRef.current);
@@ -61,13 +64,15 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                             connection,
                             signatureInfo.signature,
                             {
-                                recipient,
-                                amount,
-                                // splToken: usdcAddress,
-                                reference,
+                              recipient,
+                              amount,
+                              // splToken: usdcAddress,
+                              reference,
+                              message
                             },
                             { commitment: 'confirmed' }
-                        )
+                          )
+                          
         
                         console.log("confirmed, proceed with evil deeds")
         
@@ -86,7 +91,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                                 avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: false,
                             },
-                            description: 'User sent you SOL through Phantom App!',
+                            description: message,
                             transactionDate: new Date(),
                             status: 'Completed',
                             amount: amount,
@@ -131,6 +136,10 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
                     <p className="text-sm font-light text-gray-600">Scan to pay ${truncate(userAddress)}</p>
 
+                    <input type="number" placeholder="Enter amount" value={amountInput} onChange={(e) => setAmountInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+
+                    <input type="text" placeholder="Enter your message" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+
                     <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
                     </button>
@@ -138,6 +147,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                     <button onClick={() => loadOff()} className="w-full rounded-lg bg-[red] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Cancel</span>
                     </button>
+        
                 </div>
             </div>
         </Modal>
