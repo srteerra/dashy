@@ -69,7 +69,6 @@ export const useDashy = () => {
         userMessage: "",
         userVerify: false,
         userAddress: publicKey.toString(),
-        userAvatar: builder.image(avatar),
         userContacts: [],
       };
 
@@ -78,11 +77,12 @@ export const useDashy = () => {
       client.createIfNotExists(userDoc);
 
       client.getDocument(publicKey.toString()).then((users) => {
-        console.log(users);
-        setUserName(users.userName);
+        if (users.userName !== undefined) {
+          setUserName(users.userName);
+        }
 
-        if (users.userAvatar) {
-          setAvatar(users.userAvatar.options.source);
+        if (users.userAvatar !== undefined) {
+          setAvatar(builder.image(users.userAvatar).url());
         }
       });
 
