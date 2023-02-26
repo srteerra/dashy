@@ -25,11 +25,6 @@ const NavMenu = ({ connected, publicKey }) => {
         },
         {
             icon: Cog6ToothIcon,
-            item: 'Inbox',
-            current: false,
-        },
-        {
-            icon: Cog6ToothIcon,
             item: 'Settings',
             current: false,
             action: openModal,
@@ -55,7 +50,7 @@ const NavMenu = ({ connected, publicKey }) => {
 
 const NavMenuItem = ({ Icon, item, current, action }) => {
     return (
-        <li onClick={action} className={classNames('flex cursor-pointer space-x-3 transition-all hover:text-gray-100', current ? 'text-white' : 'text-[#15ec3c]', 'font-semibold')}>
+        <li onClick={action} className={classNames('flex cursor-pointer space-x-3 transition-all hover:text-gray-100', current ? 'text-white' : 'text-[#7e7293]', 'font-semibold')}>
             <Icon className="h-6 w-6 " />
             <span>{item}</span>
         </li>
