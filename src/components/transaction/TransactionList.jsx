@@ -20,7 +20,7 @@ const TransactionList = ({ transactions }) => {
             </div>
             <div className="mx-auto max-w-3xl divide-y divide-gray-100 py-4 px-4 md:px-10 xl:px-0">
                 {transactions.map(({ id, to, amount, description, transactionDate }) => (
-                    <Fade key={id} direction="left">
+                    <Fade key={id} direction="left" delay={`${id}0`}>
                         <TransactionItem key={id} id={id} to={to} description={description} transactionDate={transactionDate} amount={amount} toggleTransactionDetailModal={toggleTransactionDetailModal} />
                     </Fade>
                 ))}
