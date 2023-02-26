@@ -18,13 +18,19 @@ const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen })
         const params = { address: currentTransaction?.to.name };
 
         client.fetch(query, params).then((user) => {
-            setUsername(user[0].userName)
-            
-            if (user[0].userAvatar) {
-                setAvatar(builder.image(user[0].userAvatar).url());
+            if(user[0]) {
+                setUsername(user[0].userName)
+    
+                if (user[0].userAvatar) {
+                    setAvatar(builder.image(user[0].userAvatar).url());
+                } else {
+                    setAvatar("https://certchain.infura-ipfs.io/ipfs/Qmf5tiCy77SqzAfAfXCQDuR4NPktQ8AYzkEeN9NrsnYSD6")
+                }
             } else {
+                setUsername("Solana Pay")
                 setAvatar("https://certchain.infura-ipfs.io/ipfs/Qmf5tiCy77SqzAfAfXCQDuR4NPktQ8AYzkEeN9NrsnYSD6")
             }
+            
         });
     }
 
@@ -37,8 +43,8 @@ const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen })
                 <TransactionMetadata
                     metadata={{
                         amount: `${Number(currentTransaction?.amount).toFixed(2)} SOL`,
-                        to: currentTransaction?.to.name,
-                        from: currentTransaction?.from.name,
+                        to: currentTransaction?.from.name,
+                        from: currentTransaction?.to.name,
                     }}
                 />
                 <TransactionFooter />
@@ -70,7 +76,7 @@ const TransactionProfile = ({ name, handle, avatar, verified }) => {
 const TransactionDetails = ({ amount, description, transactionDate }) => {
     return (
         <div className="flex flex-col items-center justify-center space-y-4">
-            <h3 className="text-6xl">{Number(amount).toFixed(1)} SOL</h3>
+            <h3 className="text-6xl font-bold text-[#7A49CA]">{Number(amount).toFixed(1)} SOL</h3>
             <div className="flex flex-col items-center text-gray-400">
                 <p className='my-5'>{description}</p>
                 <p>

@@ -187,7 +187,7 @@ const Home = () => {
           )}
         </div>
       )}
-      <main className="flex flex-1 flex-col bg-[#7A49CA] lg:ml-[300px]">
+      <main className="flex flex-1 flex-col bg-gradient-to-br from-[#7a49ca] via-[#8d61d3] to-[#cbaaff] lg:ml-[300px]">
         <div className="w-full py-20">
           <button className="">
             <Image
@@ -237,7 +237,7 @@ const Home = () => {
           {connected ? (
             <TransactionList
               connected={connected}
-              transactions={transactions}
+              transactions={userTransactions}
             />
           ) : (
             <div>

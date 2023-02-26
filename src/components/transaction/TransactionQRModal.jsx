@@ -42,8 +42,6 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
             const reference = Keypair.generate().publicKey;
             const label = 'Dashy Payment';
             const message = messageInput;
-            console.log(amount)
-            console.log(message)
             const urlParams = {
                 recipient,
                 amount,

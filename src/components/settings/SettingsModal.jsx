@@ -34,7 +34,7 @@ const SettingsModal = ({ settingsModalOpen, setSettingsModalOpen, setUserName })
 
     return (
         <ModalClose modalOpen={settingsModalOpen} setModalOpen={setSettingsModalOpen}>
-            <div>
+            <div className='w-full'>
                 <div>
                     <h1 className='font-bold text-xl'>Edit profile</h1>
                 </div>
