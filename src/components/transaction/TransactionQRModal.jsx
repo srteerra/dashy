@@ -16,7 +16,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
     const [messageInput, setMessageInput] = useState("");
     const { transactions, setTransactions } = useDashy();
     const toastId = useRef(null);
-    const trans = () => toastId.current = toast.loading("Please wait...",{closeOnClick: false, closeButton: true,});
+    const trans = () => toastId.current = toast.loading("Waiting for payment...",{closeOnClick: false, closeButton: true,});
     const update = () => toast.update(toastId.current, {render:"Completed", type: toast.TYPE.SUCCESS, isLoading: false, closeOnClick: true, autoClose: 3000, });
     const notify = () => toast.update(toastId.current, {render:"Transaction request cancelled", type: toast.TYPE.WARNING, isLoading: false, closeOnClick: true, autoClose: 3000, });
     
@@ -40,7 +40,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
             const recipient = new PublicKey(userAddress);
             const amount = new BigNumber(amountInput);
             const reference = Keypair.generate().publicKey;
-            const label = 'Solana Pay';
+            const label = 'Dashy Payment';
             const message = messageInput;
             console.log(amount)
             console.log(message)
@@ -147,7 +147,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                 <div className="flex flex-col items-center justify-center space-y-1">
                     <div className="grid grid-cols-2">
                         <div className="flex items-center">
-                            <img src={avatar} alt="" srcset="" className="w-20 rounded-full" />
+                            <img src={avatar} alt="" srcset="" className="w-14 rounded-full" />
                         </div>
                         <div className="my-auto">
                             <p className="text-lg font-medium text-gray-800">{userName}</p>
