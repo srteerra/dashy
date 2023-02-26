@@ -1,11 +1,11 @@
 import { format } from 'date-fns';
 import { CheckBadgeIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { capitalize } from '../../utils/string.js';
-import {Modal} from '../Modal';
+import {ModalClose} from '../Modal';
 
 const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen }) => {
     return (
-        <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <ModalClose modalOpen={modalOpen} setModalOpen={setModalOpen}>
             <div className="space-y-20">
                 <TransactionProfile name={currentTransaction?.to.name} handle={currentTransaction?.to.name} avatar={currentTransaction?.to.avatar} verified={currentTransaction?.to.verified} />
                 <TransactionDetails amount={currentTransaction?.amount} description={currentTransaction?.description} transactionDate={currentTransaction?.transactionDate} />
@@ -19,7 +19,7 @@ const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen })
                 />
                 <TransactionFooter />
             </div>
-        </Modal>
+        </ModalClose>
     );
 }
 
@@ -32,8 +32,8 @@ const TransactionProfile = ({ name, handle, avatar, verified }) => {
             </div>
 
             <div className="flex flex-col items-center space-y-1">
-                <div className="flex items-center space-x-1">
-                    <p className="font-semibold">{name}</p>
+                <div className="flex items-center justify-center space-x-1">
+                    <p className="font-semibold max-w-[75%] truncate">{name}</p>
                     {verified && <CheckBadgeIcon className="h-5 w-5 text-blue-500" />}
                 </div>
 

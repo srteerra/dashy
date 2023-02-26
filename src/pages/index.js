@@ -6,6 +6,7 @@ import Profile from "../components/header/Profile";
 import SearchBar from "../components/home/SearchInput";
 import NewTransactionModal from "../components/transaction/NewTransactionModal";
 import SettingsModal from "../components/settings/SettingsModal";
+import ContactsModal from "../components/settings/ContactsModal";
 import TransactionList from "../components/transaction/TransactionList";
 import TransactionQRModal from "../components/transaction/TransactionQRModal";
 import { Transaction } from "../data/Transaction";
@@ -18,6 +19,7 @@ import menuBars from "../assets/menu.png";
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
+  const [ContactsModalOpen, setContactsModalOpen] = useState(false);
   const [qrCode, setQrCode] = useState(false);
   const [onMobile, setOnMobile] = useState(false);
   const [mobileMenu, setmobileMenu] = useState(false);
@@ -70,6 +72,13 @@ const Home = () => {
         userName={userName}
         setUserName={setUserName}
       />
+      <ContactsModal
+        ContactsModalOpen={ContactsModalOpen}
+        setContactsModalOpen={setContactsModalOpen}
+        userAddress={userAddress}
+        userName={userName}
+        setUserName={setUserName}
+      />
 
       {!onMobile ? (
         <div>
@@ -89,6 +98,8 @@ const Home = () => {
                   publicKey={publicKey}
                   setSettingsModalOpen={setSettingsModalOpen}
                   settingsModalOpen={settingsModalOpen}
+                  ContactsModalOpen={ContactsModalOpen}
+                  setContactsModalOpen={setContactsModalOpen}
                 />
 
                 {connected ? (
