@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import TransactionDetailModal from './TransactionDetailModal';
 import TransactionItem from './TransactionItem';
+import { Fade } from "react-awesome-reveal";
 
 const TransactionList = ({ transactions }) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -19,7 +20,9 @@ const TransactionList = ({ transactions }) => {
             </div>
             <div className="mx-auto max-w-3xl divide-y divide-gray-100 py-4 px-4 md:px-10 xl:px-0">
                 {transactions.map(({ id, to, amount, description, transactionDate }) => (
-                    <TransactionItem key={id} id={id} to={to} description={description} transactionDate={transactionDate} amount={amount} toggleTransactionDetailModal={toggleTransactionDetailModal} />
+                    <Fade key={id} direction="left">
+                        <TransactionItem key={id} id={id} to={to} description={description} transactionDate={transactionDate} amount={amount} toggleTransactionDetailModal={toggleTransactionDetailModal} />
+                    </Fade>
                 ))}
 
                 <TransactionDetailModal modalOpen={modalOpen} setModalOpen={setModalOpen} currentTransaction={currentTransaction} />
