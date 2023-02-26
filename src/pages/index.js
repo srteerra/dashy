@@ -39,10 +39,8 @@ const Home = () => {
 
     if (windowSize[0] >= 1023) {
       setOnMobile(false);
-      setmobileMenu(true);
     } else {
       setOnMobile(true);
-      setmobileMenu(false);
     }
 
     return () => {
@@ -73,7 +71,7 @@ const Home = () => {
         setUserName={setUserName}
       />
 
-      {mobileMenu ? (
+      {!onMobile ? (
         <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
           <div className="grid w-full place-items-center">
             <Image
@@ -102,16 +100,6 @@ const Home = () => {
             />
           </div>
 
-          {onMobile ? (
-            <div className="grid w-full place-items-center">
-              <button className="text-white underline" onClick={handleMenu}>
-                Go back
-              </button>
-            </div>
-          ) : (
-            <></>
-          )}
-
           <div className="grid place-items-center">
             <Image
               src={logoIcon}
@@ -123,7 +111,56 @@ const Home = () => {
           </div>
         </header>
       ) : (
-        <></>
+        <div>
+          {mobileMenu ? (
+            <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
+              <div className="grid w-full place-items-center">
+                <Image
+                  src={logoHorizontal}
+                  alt="Logo"
+                  className="w-full max-w-[200px]"
+                />
+              </div>
+
+              <div>
+                <NavMenu
+                  connected={connected}
+                  publicKey={publicKey}
+                  setSettingsModalOpen={setSettingsModalOpen}
+                  settingsModalOpen={settingsModalOpen}
+                />
+
+                {connected ? (
+                  <Action setModalOpen={setNewTransactionModalOpen} />
+                ) : (
+                  <></>
+                )}
+                <NewTransactionModal
+                  modalOpen={newTransactionModalOpen}
+                  setModalOpen={setNewTransactionModalOpen}
+                />
+              </div>
+
+              <div className="grid w-full place-items-center">
+                <button className="text-white underline" onClick={handleMenu}>
+                  Go back
+                </button>
+              </div>
+
+              <div className="grid place-items-center">
+                <Image
+                  src={logoIcon}
+                  alt="Logo"
+                  width="20px"
+                  height="20px"
+                  className="max-w-[100px]"
+                />
+              </div>
+            </header>
+          ) : (
+            <></>
+          )}
+        </div>
       )}
       <main className="flex flex-1 flex-col bg-[#7A49CA] lg:ml-[300px]">
         <div className="w-full py-20">
