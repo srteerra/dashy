@@ -28,6 +28,9 @@ export default {
       name: 'userAvatar',
       title: 'Avatar',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'userContacts',

@@ -59,6 +59,7 @@ const Home = () => {
     userAddress,
     userName,
     setUserName,
+    setAvatar,
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
@@ -73,6 +74,7 @@ const Home = () => {
         userAddress={userAddress}
         userName={userName}
         setUserName={setUserName}
+        setAvatar={setAvatar}
       />
       <ContactsModal
         ContactsModalOpen={ContactsModalOpen}

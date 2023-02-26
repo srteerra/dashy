@@ -179,6 +179,7 @@ export const useDashy = () => {
     userName,
     setUserName,
     avatar,
+    setAvatar,
     doTransaction,
     amount,
     setAmount,
