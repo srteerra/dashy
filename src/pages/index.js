@@ -72,44 +72,58 @@ const Home = () => {
       />
 
       {!onMobile ? (
-        <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
-          <div className="grid w-full place-items-center">
-            <Image
-              src={logoHorizontal}
-              alt="Logo"
-              className="w-full max-w-[200px]"
-            />
-          </div>
+        <div>
+          {connected ? (
+            <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
+              <div className="grid w-full place-items-center">
+                <Image
+                  src={logoHorizontal}
+                  alt="Logo"
+                  className="w-full max-w-[200px]"
+                />
+              </div>
 
-          <div>
-            <NavMenu
-              connected={connected}
-              publicKey={publicKey}
-              setSettingsModalOpen={setSettingsModalOpen}
-              settingsModalOpen={settingsModalOpen}
-            />
+              <div>
+                <NavMenu
+                  connected={connected}
+                  publicKey={publicKey}
+                  setSettingsModalOpen={setSettingsModalOpen}
+                  settingsModalOpen={settingsModalOpen}
+                />
 
-            {connected ? (
-              <Action setModalOpen={setNewTransactionModalOpen} />
-            ) : (
-              <></>
-            )}
-            <NewTransactionModal
-              modalOpen={newTransactionModalOpen}
-              setModalOpen={setNewTransactionModalOpen}
-            />
-          </div>
+                {connected ? (
+                  <Action setModalOpen={setNewTransactionModalOpen} />
+                ) : (
+                  <></>
+                )}
+                <NewTransactionModal
+                  modalOpen={newTransactionModalOpen}
+                  setModalOpen={setNewTransactionModalOpen}
+                />
+              </div>
 
-          <div className="grid place-items-center">
-            <Image
-              src={logoIcon}
-              alt="Logo"
-              width="20px"
-              height="20px"
-              className="max-w-[100px]"
-            />
-          </div>
-        </header>
+              <div className="grid place-items-center">
+                <Image
+                  src={logoIcon}
+                  alt="Logo"
+                  width="20px"
+                  height="20px"
+                  className="max-w-[100px]"
+                />
+              </div>
+            </header>
+          ) : (
+            <header className="fixed z-20 grid h-screen w-[300px] place-items-center bg-[#3F2568] p-12">
+              <div className="grid w-full place-items-center">
+                <Image
+                  src={logoHorizontal}
+                  alt="Logo"
+                  className="w-full max-w-[200px]"
+                />
+              </div>
+            </header>
+          )}
+        </div>
       ) : (
         <div>
           {mobileMenu ? (
