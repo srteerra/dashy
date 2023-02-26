@@ -70,6 +70,7 @@ export const useDashy = () => {
         userVerify: false,
         userAddress: publicKey.toString(),
         userAvatar: builder.image(avatar),
+        userContacts: [],
       };
 
       console.log(builder.image(avatar));

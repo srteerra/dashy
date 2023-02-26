@@ -29,5 +29,11 @@ export default {
       title: 'Avatar',
       type: 'image',
     },
+    {
+      name: 'userContacts',
+      title: 'Contacts',
+      type: 'array',
+      of: [{type: 'string'}],
+    },
   ],
 }
