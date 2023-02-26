@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Modal, ModalClose} from '../Modal';
+import {ModalClose} from '../Modal';
 import { useDashy } from '../../hooks/dashy';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,10 +43,10 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
     }
 
     return (
-        <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <ModalClose modalOpen={modalOpen} setModalOpen={setModalOpen}>
             <div className="relative flex flex-col items-center justify-center space-y-8">
                 <div className="flex items-center justify-center text-center text-7xl font-semibold text-[#7A49CA]">
-                    <input className="w-12 outline-none overflow-hidden overflow-y-hidden" id="amount" name="amount" type="number" value={amount} onChange={onAmountInput} min={0} />
+                    <input className="w-20 outline-none overflow-hidden overflow-y-hidden" id="amount" name="amount" type="number" value={amount} onChange={onAmountInput} min={0} />
                     <label htmlFor="amount">SOL</label>
                 </div>
 
@@ -72,7 +72,7 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
                     </button>
                 </div>
             </div>
-        </Modal>
+        </ModalClose>
     );
 }
 
