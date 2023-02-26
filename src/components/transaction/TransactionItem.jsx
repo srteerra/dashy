@@ -40,7 +40,7 @@ const TransactionItem = ({ id, from, to, description, transactionDate, amount, t
     }
 
     return (
-        <div onClick={onItemClick} className="grid gap-4 my-6 shadow-lg cursor-pointer grid-cols-4 sm:grid-cols-8 items-center py-8 px-12 hover:bg-gray-50">
+        <div onClick={onItemClick} className="grid gap-4 my-6 relative shadow-lg cursor-pointer grid-cols-4 sm:grid-cols-8 items-center py-8 px-12 hover:bg-gray-50">
             {to.name === userAddress ? <Image src={outIcon} width="40" className="absolute top-0 left-2"/> : <Image src={inIcon} width="40" className="absolute top-0 left-2"/>}
             <div className="col-span-2 flex items-center space-x-4">
                 <img className="h-8 w-8 rounded-full object-cover" src={avatar} alt="avatar" />

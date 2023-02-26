@@ -15,6 +15,7 @@ import logoIcon from "../assets/icon-white.png";
 import logoHorizontal from "../assets/hor-white.png";
 import waitImage from "../assets/wait.png";
 import menuBars from "../assets/menu.png";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
@@ -168,7 +169,10 @@ const Home = () => {
 
               <div className="grid w-full place-items-center">
                 <button className="text-white underline" onClick={handleMenu}>
-                  Go back
+                  <span className="flex flex-row justify-center">
+                    <ArrowLeftCircleIcon width={"25px"} className="mr-2" />
+                    Go back
+                  </span>
                 </button>
               </div>
 

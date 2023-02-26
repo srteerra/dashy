@@ -20,9 +20,7 @@ const TransactionList = ({ transactions }) => {
             </div>
             <div className="mx-auto max-w-3xl divide-y divide-gray-100 py-4 px-4 md:px-10 xl:px-0">
                 {transactions.map(({ id, from, to, amount, description, transactionDate }) => (
-                    <Fade key={id} direction="left">
-                        <TransactionItem key={id} from={from} id={id} to={to} description={description} transactionDate={transactionDate} amount={amount} toggleTransactionDetailModal={toggleTransactionDetailModal} />
-                    </Fade>
+                    <TransactionItem key={id} from={from} id={id} to={to} description={description} transactionDate={transactionDate} amount={amount} toggleTransactionDetailModal={toggleTransactionDetailModal} />
                 ))}
 
                 <TransactionDetailModal modalOpen={modalOpen} setModalOpen={setModalOpen} currentTransaction={currentTransaction} />
