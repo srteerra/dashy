@@ -79,13 +79,13 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                             from: {
                                 name: recipient,
                                 handle: recipient,
-                                avatar: getAvatarUrl(recipient.toString()),
+                                avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: true,
                             },
                             to: {
                                 name: reference,
                                 handle: '-',
-                                avatar: getAvatarUrl(reference.toString()),
+                                avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: false,
                             },
                             description: 'User sent you SOL through Phantom App!',
@@ -133,7 +133,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
                     <p className="text-sm font-light text-gray-600">Scan to pay ${truncate(userAddress)}</p>
 
-                    <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#16d542] py-3 hover:bg-opacity-70">
+                    <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
                     </button>
 

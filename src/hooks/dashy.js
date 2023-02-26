@@ -12,12 +12,16 @@ import {
 } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
 import { client } from "../../lib/sanityClient";
+import imageUrlBuilder from "@sanity/image-url";
+
+// Get a pre-configured url-builder from your sanity client
+const builder = imageUrlBuilder(client);
 
 export const useDashy = () => {
   const [avatar, setAvatar] = useState(
-    "https://images.pexels.com/photos/4519122/pexels-photo-4519122.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960"
   );
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("Unnamed");
   const [userAddress, setUserAddress] = useState("");
   const [amount, setAmount] = useState(0);
   const [receiver, setReceiver] = useState("");
@@ -56,6 +60,7 @@ export const useDashy = () => {
   useEffect(() => {
     if (connected) {
       setUserAddress(publicKey.toString());
+
       const userDoc = {
         _type: "users",
         _id: publicKey.toString(),
@@ -63,19 +68,15 @@ export const useDashy = () => {
         userMessage: "",
         userVerify: false,
         userAddress: publicKey.toString(),
-        // userAvatar: {
-        //   _type: "image",
-        //   asset: {
-        //     _type: "reference",
-        //     _ref: "https://news.bit2me.com/wp-content/uploads/2022/08/nft-marche.jpg",
-        //   },
-        // },
+        userAvatar: builder.image(avatar),
       };
 
       client.createIfNotExists(userDoc);
+
       client.getDocument(publicKey.toString()).then((users) => {
         console.log(users);
         setUserName(users.userName);
+        setAvatar(users.userAvatar.options.source);
       });
     }
   }, [connected, publicKey]);
