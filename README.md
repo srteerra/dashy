@@ -14,6 +14,9 @@ Día con día miles de usuarios dentro de America Latina hace uso de plataformas
 
 Hoy en día existen multiples plataformas de transferencias de dinero de manera tradicional, el problema de estas plataformas es que sus tarifas son altas, el tiempo de espera puede ser muy largo y son complejas de usar. Además estas plataformas no son 100% seguras dado que existe la posibilidad de la manipulación de datos y puede ser bloqueado su uso dentro de algunas regiones del mundo, por lo que todo lo antes mencionado se presenta como inconveniente a la hora de realizar una transferencia de dinero.
 
+## Social Media
+
+[Twitter](https://twitter.com/DashyDapp/)
 
 ### This platform is now working at [Dashy.site](https://www.dashy.site/)
 
@@ -104,9 +107,9 @@ Execute the following command:
 npm run dev
 ```
 It may take a few minutes to set up the application, so stay calm!
-#### The default port is **8080**
+#### The default port is **3000**
 ```bash
-http:/localhost:8080/
+http:/localhost:3000/
 ```
 
 
