@@ -1,12 +1,23 @@
 import { useState } from 'react';
-import Modal from '../Modal';
+import {Modal, ModalClose} from '../Modal';
 import { useDashy } from '../../hooks/dashy';
 import { client } from "../../../lib/sanityClient";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SettingsModal = ({ settingsModalOpen, setSettingsModalOpen, setUserName }) => {
     const {userAddress, userName} = useDashy();
     const [newUsername, setNewUsername] = useState("")
-
+    const success = () => toast.success('Profile updated', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     const onUpdate = () => {
         if(newUsername !== "") {
             client.patch(userAddress).set({ userName: newUsername }).commit().then((updatedAcc) => {
@@ -14,6 +25,7 @@ const SettingsModal = ({ settingsModalOpen, setSettingsModalOpen, setUserName })
                 console.log(updatedAcc);
                 console.log(updatedAcc.userName);
                 setUserName(updatedAcc.userName)
+                success();
             });
         }
 
@@ -21,7 +33,7 @@ const SettingsModal = ({ settingsModalOpen, setSettingsModalOpen, setUserName })
     }
 
     return (
-        <Modal modalOpen={settingsModalOpen} setModalOpen={setSettingsModalOpen}>
+        <ModalClose modalOpen={settingsModalOpen} setModalOpen={setSettingsModalOpen}>
             <div>
                 <div>
                     <h1 className='text-xl'>Edit profile</h1>
@@ -40,7 +52,7 @@ const SettingsModal = ({ settingsModalOpen, setSettingsModalOpen, setUserName })
                     </button>
                 </div>
             </div>
-        </Modal>
+        </ModalClose>
     );
 }
 
