@@ -68,7 +68,7 @@ export const useDashy = () => {
         userMessage: "",
         userVerify: false,
         userAddress: publicKey.toString(),
-        userAvatar: avatar,
+        userAvatar: builder.image(avatar),
       };
 
       client.createIfNotExists(userDoc);
