@@ -3,10 +3,14 @@ import { truncate } from '../../utils/string';
 import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
 
-const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen }) => {
+const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen, setContactsModalOpen, ContactsModalOpen }) => {
 
     const handleSettings = () => {
         setSettingsModalOpen(!settingsModalOpen)
+    }
+
+    const handleContacts = ()  => {
+        setContactsModalOpen(!ContactsModalOpen)
     }
 
     const menus = [
@@ -19,6 +23,8 @@ const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen
             icon: CurrencyDollarIcon,
             item: 'My Friends',
             current: false,
+            action: handleContacts
+
         },
         {
             icon: Cog6ToothIcon,
