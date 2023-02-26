@@ -22,6 +22,8 @@ const Home = () => {
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
+    settingsModalOpen,
+    setSettingsModalOpen,
   } = useDashy();
 
   return (

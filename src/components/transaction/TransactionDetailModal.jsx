@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { CheckBadgeIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { capitalize } from '../../utils/string.js';
-import Modal from '../Modal';
+import {Modal} from '../Modal';
 
 const TransactionDetailModal = ({ currentTransaction, modalOpen, setModalOpen }) => {
     return (

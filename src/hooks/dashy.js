@@ -169,5 +169,7 @@ export const useDashy = () => {
     setTransactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
+    settingsModalOpen,
+    setSettingsModalOpen,
   };
 };

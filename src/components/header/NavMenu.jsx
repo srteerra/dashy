@@ -3,8 +3,15 @@ import { truncate } from '../../utils/string';
 import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useDashy } from '../../hooks/dashy';
 
 const NavMenu = ({ connected, publicKey }) => {
+    const { settingsModalOpen, setSettingsModalOpen } = useDashy();
+
+    const openModal = () => {
+        setSettingsModalOpen(true);
+    }
+
     const menus = [
         {
             icon: ClockIcon,
@@ -25,6 +32,7 @@ const NavMenu = ({ connected, publicKey }) => {
             icon: Cog6ToothIcon,
             item: 'Settings',
             current: false,
+            action: openModal,
         },
     ]
 
@@ -36,13 +44,14 @@ const NavMenu = ({ connected, publicKey }) => {
                 ))}
                 <li>
                     <WalletMultiButton>
-                        <span className='text-sm'>{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
+                        <span className='text-sm' >{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
                     </WalletMultiButton>
                 </li>
             </ul>
         </nav >
     );
 }
+    
 
 const NavMenuItem = ({ Icon, item, current, action }) => {
     return (

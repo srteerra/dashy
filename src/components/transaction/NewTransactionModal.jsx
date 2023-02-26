@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../Modal';
+import {Modal, ModalClose} from '../Modal';
 import { useDashy } from '../../hooks/dashy';
 
 const NewTransactionModal = ({ modalOpen, setModalOpen }) => {

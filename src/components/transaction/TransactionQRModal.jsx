@@ -1,4 +1,4 @@
-import Modal from "../Modal";
+import { Modal, ModalClose } from "../Modal";
 import { truncate } from "@/utils/string";
 import { createQR, encodeURL, findReference, validateTransfer, FindReferenceError, ValidateTransferError } from "@solana/pay";
 import { PublicKey, Keypair } from '@solana/web3.js';
