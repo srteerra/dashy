@@ -2,6 +2,7 @@ import { ClockIcon, CurrencyDollarIcon, UserCircleIcon, Cog6ToothIcon } from '@h
 import { truncate } from '../../utils/string';
 import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
+import { Fade } from "react-awesome-reveal";
 
 const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen, setContactsModalOpen, ContactsModalOpen }) => {
 
@@ -38,7 +39,9 @@ const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen
         <nav className="flex flex-1 items-center justify-center">
             <ul className="flex flex-col space-y-10">
                 {menus.map(({ icon, item, current, action }, i) => (
-                    <NavMenuItem key={i} Icon={icon} item={item} current={current} action={action} />
+                    <Fade key={i} direction="left" delay={`${i}0`}>
+                        <NavMenuItem key={i} Icon={icon} item={item} current={current} action={action} />
+                    </Fade>
                 ))}
             </ul>
         </nav >
