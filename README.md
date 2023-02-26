@@ -6,13 +6,20 @@
 ![](https://img.shields.io/github/stars/srteerra/dashy)![](https://img.shields.io/github/forks/srteerra/dashy)
 
 
-Dashy is a decentralized platform built on the solana blockchain that allows users to streamline money transfers through the use of easily accessible QRs.
+Dashy es una plataforma descentralizada construida bajo la blockchain de solana que permite a los usuarios agilizar las transferencias de dinero a traves del uso de QR’s de fácil acceso.
+
+### Description
+
+Día con día miles de usuarios dentro de America Latina hace uso de plataformas de envió de dinero,según un estudio realizado por Kantar TNS, el 63% de los usuarios que hacen uso de internet, utilizan servicios de transacciones digitales.
+
+Hoy en día existen multiples plataformas de transferencias de dinero de manera tradicional, el problema de estas plataformas es que sus tarifas son altas, el tiempo de espera puede ser muy largo y son complejas de usar. Además estas plataformas no son 100% seguras dado que existe la posibilidad de la manipulación de datos y puede ser bloqueado su uso dentro de algunas regiones del mundo, por lo que todo lo antes mencionado se presenta como inconveniente a la hora de realizar una transferencia de dinero.
+
 
 ### This platform is now working at [Dashy.site](https://www.dashy.site/)
 
 # Table of contents
+- [Description](#description)
 - [Built with](#built-with)
-- [Workflow](#workflow)
 - [Screenshots](#screenshots)
 - [Authors](#authors)
 - [See our Demo](#demo-on-figma)
@@ -50,10 +57,6 @@ Dashy is a decentralized platform built on the solana blockchain that allows use
 
 ### Friends list modal
 ![Web capture_26-2-2023_115811_www dashy site](https://user-images.githubusercontent.com/74383100/221430645-467c3ae2-ad17-40d8-9c5f-da073a9d6ff6.jpeg)
-
-
-
-
 
 
 # Authors
