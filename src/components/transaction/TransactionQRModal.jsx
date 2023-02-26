@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode }) => {
     const qrRef = useRef();
     const [handleClick, setHandleClick] = useState(false);
+    const [amountInput, setAmountInput] = useState("");
     const { transactions, setTransactions } = useDashy();
 
     const { connection } = useConnection();
@@ -28,11 +29,11 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
     useEffect(() => {
         if(userAddress != ''){
             const recipient = new PublicKey(userAddress);
-            const amount = new BigNumber("1");
+            const amount = new BigNumber(amountInput);
             const reference = Keypair.generate().publicKey;
             const label = 'Solana Pay';
             const message = 'Thanks for help me!';
-
+            console.log(amount)
             const urlParams = {
                 recipient,
                 amount,
@@ -61,13 +62,14 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                             connection,
                             signatureInfo.signature,
                             {
-                                recipient,
-                                amount,
-                                // splToken: usdcAddress,
-                                reference,
+                              recipient,
+                              amount,
+                              // splToken: usdcAddress,
+                              reference,
                             },
                             { commitment: 'confirmed' }
-                        )
+                          )
+                          
         
                         console.log("confirmed, proceed with evil deeds")
         
@@ -138,6 +140,12 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                     <button onClick={() => loadOff()} className="w-full rounded-lg bg-[red] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Cancel</span>
                     </button>
+                    <input
+                        type="number"
+                        placeholder="Enter amount"
+                        value={amountInput}
+                        onChange={(e) => setAmountInput(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg"/>
                 </div>
             </div>
         </Modal>
