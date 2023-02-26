@@ -2,6 +2,7 @@ import { truncate } from "../../utils/string";
 import Image from "next/image";
 import scanIcon from "../../assets/scan.png";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { Zoom, Bounce } from "react-awesome-reveal";
 
 const Profile = ({ setModalOpen, avatar, userAddress, userName, connected, publicKey }) => {
 
@@ -22,11 +23,12 @@ const Profile = ({ setModalOpen, avatar, userAddress, userName, connected, publi
             <div className="flex flex-col items-center space-y-1">
                 <p className="font-semibold text-white text-xl">{userName}</p>
 
-                <WalletMultiButton>
-                    <span className='text-sm'>{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
-                </WalletMultiButton>
+                    <WalletMultiButton>
+                        <span className='text-sm'>{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
+                    </WalletMultiButton>
+                </div>
             </div>
-        </div>
+        </Zoom>
     );
 }
 

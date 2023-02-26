@@ -16,6 +16,7 @@ import logoHorizontal from "../assets/hor-white.png";
 import waitImage from "../assets/wait.png";
 import menuBars from "../assets/menu.png";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
+import { Bounce } from "react-awesome-reveal";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
@@ -127,11 +128,13 @@ const Home = () => {
           ) : (
             <header className="fixed z-20 grid h-screen w-[300px] place-items-center bg-[#3F2568] p-12">
               <div className="grid w-full place-items-center">
-                <Image
-                  src={logoHorizontal}
-                  alt="Logo"
-                  className="w-full max-w-[200px]"
-                />
+                <Bounce>
+                  <Image
+                    src={logoHorizontal}
+                    alt="Logo"
+                    className="w-full max-w-[200px]"
+                  />
+                </Bounce>
               </div>
             </header>
           )}

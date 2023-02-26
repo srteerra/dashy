@@ -168,7 +168,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                         </div>
                     </div>
 
-                    <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
+                    <button onClick={() => loadQr()} disabled={handleClick} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
                     </button>
 
