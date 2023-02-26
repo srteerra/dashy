@@ -91,7 +91,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                                 avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: false,
                             },
-                            description: '',
+                            description: message,
                             transactionDate: new Date(),
                             status: 'Completed',
                             amount: amount,
