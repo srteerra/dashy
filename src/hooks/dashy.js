@@ -161,6 +161,7 @@ export const useDashy = () => {
     publicKey,
     userAddress,
     userName,
+    setUserName,
     avatar,
     doTransaction,
     amount,
