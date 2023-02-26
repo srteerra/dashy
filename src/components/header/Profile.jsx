@@ -6,14 +6,17 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 const Profile = ({ setModalOpen, avatar, userAddress, userName, connected, publicKey }) => {
 
     const onProfileOpen = () => {
-        setModalOpen(true)
+        if(connected){
+            setModalOpen(true)
+        }
+        return;
     }
 
     return (
         <div className="flex flex-col items-center space-y-3">
             <div onClick={onProfileOpen} className="h-20 w-20 relative cursor-pointer rounded-full border-2 border-white">
-                <img className="h-full w-full rounded-full object-cover" src={avatar} />
-                <Image src={scanIcon} className="h-[30px] w-[30px] rounded-full object-cover absolute right-0 bottom-0"/>
+                <img className="h-full w-full rounded-full object-cover" src={avatar} alt="user avatar" />
+                {connected ? <Image src={scanIcon} className="h-[30px] w-[30px] rounded-full object-cover absolute right-0 bottom-0"/> : null}
             </div>
 
             <div className="flex flex-col items-center space-y-1">
