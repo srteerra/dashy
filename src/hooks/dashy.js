@@ -19,7 +19,7 @@ const builder = imageUrlBuilder(client);
 
 export const useDashy = () => {
   const [avatar, setAvatar] = useState(
-    "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960"
+    "https://certchain.infura-ipfs.io/ipfs/Qmf5tiCy77SqzAfAfXCQDuR4NPktQ8AYzkEeN9NrsnYSD6"
   );
   const [userName, setUserName] = useState("Unnamed");
   const [userAddress, setUserAddress] = useState("");

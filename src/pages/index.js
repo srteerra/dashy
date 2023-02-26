@@ -11,6 +11,7 @@ import { Transaction } from "../data/Transaction";
 import Image from "next/image";
 import logoIcon from "../assets/icon-white.png";
 import logoHorizontal from "../assets/hor-white.png";
+import waitImage from "../assets/wait.png";
 import menuBars from "../assets/menu.png";
 
 const Home = () => {
@@ -78,8 +79,8 @@ const Home = () => {
       ) : (
         <></>
       )}
-      <main className="flex flex-1 flex-col">
-        <div className="w-full bg-[#7A49CA] py-20">
+      <main className="flex flex-1 flex-col bg-[#7A49CA]">
+        <div className="w-full py-20">
           <button className="">
             <Image
               src={menuBars}
@@ -115,22 +116,31 @@ const Home = () => {
               setQrCode={setQrCode}
             />
           </div>
-        </div>
-        <div>
           {connected ? (
-            <div>
-              <div className="my-8 grid w-full place-items-center">
-                <SearchBar />
-              </div>
-              <TransactionList
-                connected={connected}
-                transactions={transactions}
-              />
+            <div className="mt-16 grid w-full place-items-center">
+              <SearchBar />
             </div>
           ) : (
-            <h1 className="mt-10 text-center text-2xl">
-              Connect your wallet to see your transactions
-            </h1>
+            <></>
+          )}
+        </div>
+        <div className="rounded-t-[70px] bg-white">
+          {connected ? (
+            <TransactionList
+              connected={connected}
+              transactions={transactions}
+            />
+          ) : (
+            <div>
+              <Image
+                src={waitImage}
+                alt="Waiting"
+                className="mx-auto mt-32 max-w-[200px]"
+              />
+              <p className="mt-10 text-center text-xl text-gray-400">
+                Connect your wallet to see your transactions
+              </p>
+            </div>
           )}
         </div>
       </main>
