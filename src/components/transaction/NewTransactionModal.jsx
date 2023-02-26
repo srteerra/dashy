@@ -1,10 +1,21 @@
 import { useState } from 'react';
-import Modal from '../Modal';
+import {Modal, ModalClose} from '../Modal';
 import { useDashy } from '../../hooks/dashy';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
     const {doTransaction, amount, setAmount, receiver, setReceiver, transactionPurpose, setTransactionPurpose} = useDashy();
-
+    const success = () => toast.success('Transaction completed', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     const onAmountInput = (e) => {
         e.preventDefault();
         const newAmount = e.target.value;
@@ -25,6 +36,7 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
         });
         // Clear states
         setModalOpen(false);
+        success();
         setAmount(0);
         setReceiver("");
         setTransactionPurpose("");

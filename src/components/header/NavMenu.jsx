@@ -38,6 +38,7 @@ const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen
         </nav >
     );
 }
+    
 
 const NavMenuItem = ({ Icon, item, current, action }) => {
     return (

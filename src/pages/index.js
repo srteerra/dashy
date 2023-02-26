@@ -60,6 +60,7 @@ const Home = () => {
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
+    userTransactions,
   } = useDashy();
 
   return (

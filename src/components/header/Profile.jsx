@@ -4,6 +4,7 @@ import scanIcon from "../../assets/scan.png";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 const Profile = ({ setModalOpen, avatar, userAddress, userName, connected, publicKey }) => {
+
     const onProfileOpen = () => {
         setModalOpen(true)
     }

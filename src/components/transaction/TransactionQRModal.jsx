@@ -1,4 +1,4 @@
-import Modal from "../Modal";
+import { Modal, ModalClose } from "../Modal";
 import { truncate } from "@/utils/string";
 import { createQR, encodeURL, findReference, validateTransfer, FindReferenceError, ValidateTransferError } from "@solana/pay";
 import { PublicKey, Keypair } from '@solana/web3.js';
@@ -6,6 +6,8 @@ import BigNumber from 'bignumber.js';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useDashy } from "../../hooks/dashy";
 import { useEffect, useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, avatar, setQrCode }) => {
     const qrRef = useRef();
@@ -13,17 +15,24 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
     const [amountInput, setAmountInput] = useState("");
     const [messageInput, setMessageInput] = useState("");
     const { transactions, setTransactions } = useDashy();
-
+    const toastId = useRef(null);
+    const trans = () => toastId.current = toast.loading("Please wait...",{closeOnClick: false, closeButton: true,});
+    const update = () => toast.update(toastId.current, {render:"Completed", type: toast.TYPE.SUCCESS, isLoading: false, closeOnClick: true, autoClose: 3000, });
+    const notify = () => toast.update(toastId.current, {render:"Transaction request cancelled", type: toast.TYPE.WARNING, isLoading: false, closeOnClick: true, autoClose: 3000, });
+    
     const { connection } = useConnection();
 
     const loadQr = () => {
         setQrCode(true);
-        setHandleClick(!handleClick);
+        setHandleClick(true);
+        trans();
     }
 
     const loadOff = () => {
         setModalOpen(false);
         setHandleClick(false);
+        notify();
+        
     }
 
     useEffect(() => {
@@ -53,7 +62,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
 
             if(handleClick){
                 const interval = setInterval(async () => {
-                    console.log("waiting for transaction confirmation")
+                    //console.log("waiting for transaction confirmation")
                     try {
                         // Check if there is any transaction for the reference
                         const signatureInfo = await findReference(connection, reference, { finality: 'confirmed' })
@@ -72,7 +81,6 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                             { commitment: 'confirmed' }
                           )
                           
-        
                         console.log("confirmed, proceed with evil deeds")
         
                         const newID = (transactions.length + 1).toString()
@@ -100,9 +108,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                         console.log(newTransaction, "NEW TRANSACTIONS EXISTS")
                         setTransactions([newTransaction, ...transactions]);
                         setModalOpen(false);
-        
-        
-                        clearInterval(interval)
+                        clear();
                     } catch (e) {
                         if (e instanceof FindReferenceError) {
                             // No transaction found yet, ignore this error
@@ -115,21 +121,29 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                         }
                         console.error('Unknown error', e)
                     }
-                }, 500)
-                return () => clearInterval(interval)
+                }, 500);
+                
+                return () => {
+                    clearInterval(interval);
+                    notify();
+                }
+
+                function clear(){
+                    clearInterval(interval);
+                    update();
+                }
             }
-    
         }
         return
-    })
+    }, [handleClick]);
 
     return (
         <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+            
             <div >
                 <div className="flex flex-col items-center justify-center space-y-1">
                     <div ref={qrRef} />
                 </div>
-
                 <div className="flex flex-col items-center justify-center space-y-1">
                     <div className="grid grid-cols-2">
                         <div className="flex items-center">
@@ -163,7 +177,6 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, av
                     <button onClick={() => loadOff()} className="w-full rounded-lg border-2 border-red-700 py-3 hover:bg-opacity-70">
                         <span className="font-medium text-red-700">Cancel</span>
                     </button>
-        
                 </div>
             </div>
         </Modal>
