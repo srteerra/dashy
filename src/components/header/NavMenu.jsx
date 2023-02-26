@@ -29,11 +29,6 @@ const NavMenu = ({ connected, publicKey }) => {
                 {menus.map(({ icon, item, current, action }, i) => (
                     <NavMenuItem key={i} Icon={icon} item={item} current={current} action={action} />
                 ))}
-                <li>
-                    <WalletMultiButton>
-                        <span className='text-sm'>{ connected ? truncate(publicKey.toString()) : 'Connect Wallet'}</span>
-                    </WalletMultiButton>
-                </li>
             </ul>
         </nav >
     );

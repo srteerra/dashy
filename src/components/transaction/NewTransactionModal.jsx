@@ -43,7 +43,7 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
                         <label className="text-gray-300" htmlFor="receiver">
                             To:
                         </label>
-                        <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="receiver" name="receiver" type="text" placeholder="Name, $Cashtag, SMS, Email" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
+                        <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="receiver" name="receiver" type="text" placeholder="Address" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
                     </div>
 
                     <div className="flex rounded-lg border border-gray-200 p-4">

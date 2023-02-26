@@ -7,7 +7,7 @@ import { useConnection } from '@solana/wallet-adapter-react';
 import { useDashy } from "../../hooks/dashy";
 import { useEffect, useRef, useState } from 'react';
 
-const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode }) => {
+const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, setQrCode }) => {
     const qrRef = useRef();
     const [handleClick, setHandleClick] = useState(false);
     const [amountInput, setAmountInput] = useState("");
@@ -16,7 +16,6 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
     const { connection } = useConnection();
 
-    console.log(userAddress);
     const loadQr = () => {
         setQrCode(true);
         setHandleClick(!handleClick);
@@ -132,13 +131,15 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                 </div>
 
                 <div className="flex flex-col items-center justify-center space-y-1">
-                    <p className="text-lg font-medium text-gray-800">{truncate(userAddress)}</p>
+                    <p className="text-lg font-medium text-gray-800">{userName}</p>
 
-                    <p className="text-sm font-light text-gray-600">Scan to pay ${truncate(userAddress)}</p>
+                    <p className="text-sm font-light text-gray-600">Scan to pay</p>
 
-                    <input type="number" placeholder="Enter amount" value={amountInput} onChange={(e) => setAmountInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+                    <div className="py-6">
+                        <input type="number" placeholder="Enter amount" value={amountInput} onChange={(e) => setAmountInput(e.target.value)} className="w-full px-4 py-2 mb-4 border rounded-lg"/>
 
-                    <input type="text" placeholder="Enter your message" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+                        <input type="text" placeholder="Enter your message" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+                    </div>
 
                     <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
