@@ -6,40 +6,54 @@
 ![](https://img.shields.io/github/stars/srteerra/dashy)![](https://img.shields.io/github/forks/srteerra/dashy)
 
 
+Dashy is a decentralized platform built on the solana blockchain that allows users to streamline money transfers through the use of easily accessible QRs.
+
+### This platform is now working at [Dashy.site](https://www.dashy.site/)
+
 # Table of contents
-- [Description ](#Description)
-- [Roadmap](#roadmap)
 - [Built with](#built-with)
 - [Workflow](#workflow)
 - [Screenshots](#screenshots)
 - [Authors](#authors)
 - [See our Demo](#demo-on-figma)
-- [Quick start](#quick-start)
-- [Requirements](#requirements)
+  - [Requirements](#requirements)
+  -  [Quick start](#Quick-start)
 
-# Description
-
-Dashy is a decentralized platform built on the solana blockchain that allows users to streamline money transfers through the use of easily accessible QRs.
-
-
-# RoadMap
 
 
  # Built with
 - [React](https://es.reactjs.org/) - React helps you create interactive user interfaces easily. Design simple views for each state in your application, and React will take care of efficiently updating and rendering the correct components when data changes.
 - [Next.js](https://nextjs.org/) - Next.js is a framework that allows developers to create single-page applications and high-performance web applications through server-side rendering.
+- [Web3.js](https://web3js.readthedocs.io/en/v1.8.0/) - Web3.js is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP, IPC or WebSocket.
 - [Tailwind](https://tailwindcss.com/) - Tailwind is a CSS (Cascading Style Sheets) framework with predefined classes that you can use to build and design web pages directly in your markup. It allows you to write CSS in your HTML in the form of predefined classes.
 - [Sanity.io](https://www.sanity.io/) - Sanity is the platform for structured content that powers remarkable digital experiences.
 - [Create Next.js app]() - The easiest way to get started with Next.js is by using create-next-app. This CLI tool enables you to quickly start building a new Next.js application, with everything set up for you.
 -  [Node.js](https://nodejs.org/es/) - As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
 
 
-
-# WorkFlow
-
-
-
 # Screenshots
+
+### Home view
+![Web capture_26-2-2023_11562_www dashy site](https://user-images.githubusercontent.com/74383100/221430490-e8f87ab8-befd-40a4-aca2-530c41ef3c52.jpeg)
+
+### Home logged view
+![Web capture_26-2-2023_115743_www dashy site](https://user-images.githubusercontent.com/74383100/221430529-9d4133ab-efd7-414e-afb6-8fd18dbd270a.jpeg)
+
+### Profile modal
+![Web capture_26-2-2023_125925_www dashy site](https://user-images.githubusercontent.com/74383100/221431049-28af509e-41ae-450c-b1b3-f235ea39a4ec.jpeg)
+
+### Pay modal
+![Web capture_26-2-2023_115827_www dashy site](https://user-images.githubusercontent.com/74383100/221430592-51a83539-9299-471d-88f1-1ef291a0c541.jpeg)
+
+### QR modal
+![Web capture_26-2-2023_115847_www dashy site](https://user-images.githubusercontent.com/74383100/221430699-66134c3b-4582-410a-83db-e9da6fd96a91.jpeg)
+
+### Friends list modal
+![Web capture_26-2-2023_115811_www dashy site](https://user-images.githubusercontent.com/74383100/221430645-467c3ae2-ad17-40d8-9c5f-da073a9d6ff6.jpeg)
+
+
+
+
 
 
 # Authors
@@ -93,5 +107,3 @@ http:/localhost:8080/
 ```
 
 
-
-# Project Structure
