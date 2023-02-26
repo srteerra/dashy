@@ -27,6 +27,7 @@ export const useDashy = () => {
   const [receiver, setReceiver] = useState("");
   const [transactionPurpose, setTransactionPurpose] = useState("");
   const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false);
+  const [userTransactions, setUserTransactions] = useState([]);
 
   const { connected, publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
@@ -46,7 +47,7 @@ export const useDashy = () => {
 
     useEffect(() => {
       localStorage.setItem(storageKey, JSON.stringify(value));
-    }, [value, setValue, storageKey]);
+    }, [value, storageKey]);
 
     return [value, setValue];
   };
@@ -71,15 +72,29 @@ export const useDashy = () => {
         userAvatar: builder.image(avatar),
       };
 
+      console.log(builder.image(avatar));
+
       client.createIfNotExists(userDoc);
 
       client.getDocument(publicKey.toString()).then((users) => {
         console.log(users);
         setUserName(users.userName);
-        setAvatar(users.userAvatar.options.source);
+        //setAvatar(users.userAvatar.options.source);
       });
+
+      getTransactions();
     }
   }, [connected, publicKey]);
+
+  function getTransactions() {
+    const userTransactionsq = transactions.filter(
+      (transaction) =>
+        transaction.from.name === publicKey.toString() ||
+        transaction.from.to === publicKey.toString()
+    );
+
+    setUserTransactions(userTransactionsq);
+  }
 
   const makeTransaction = async (fromWallet, toWallet, amount, reference) => {
     console.log(fromWallet);
@@ -170,7 +185,6 @@ export const useDashy = () => {
     setTransactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
-    settingsModalOpen,
-    setSettingsModalOpen,
+    userTransactions,
   };
 };

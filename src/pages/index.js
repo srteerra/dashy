@@ -25,8 +25,7 @@ const Home = () => {
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
-    settingsModalOpen,
-    setSettingsModalOpen,
+    userTransactions,
   } = useDashy();
 
   return (
@@ -98,7 +97,7 @@ const Home = () => {
           {connected ? (
             <TransactionList
               connected={connected}
-              transactions={transactions}
+              transactions={userTransactions}
             />
           ) : (
             <h1 className="mt-10 text-center text-2xl">
