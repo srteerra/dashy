@@ -1,26 +1,54 @@
 import { useDashy } from "../hooks/dashy";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Action from "../components/header/Action";
 import NavMenu from "../components/header/NavMenu";
 import Profile from "../components/header/Profile";
 import SearchBar from "../components/home/SearchInput";
 import NewTransactionModal from "../components/transaction/NewTransactionModal";
+import SettingsModal from "../components/settings/SettingsModal";
 import TransactionList from "../components/transaction/TransactionList";
 import TransactionQRModal from "../components/transaction/TransactionQRModal";
 import { Transaction } from "../data/Transaction";
 import Image from "next/image";
 import logoIcon from "../assets/icon-white.png";
 import logoHorizontal from "../assets/hor-white.png";
+import waitImage from "../assets/wait.png";
 import menuBars from "../assets/menu.png";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
+  const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [qrCode, setQrCode] = useState(false);
+  const [onMobile, setOnMobile] = useState(false);
   const [mobileMenu, setmobileMenu] = useState(false);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
 
   const handleMenu = () => {
     setmobileMenu(!mobileMenu);
   };
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    if (windowSize[0] >= 1023) {
+      setOnMobile(false);
+      setmobileMenu(true);
+    } else {
+      setOnMobile(true);
+      setmobileMenu(false);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
 
   const {
     connected,
@@ -28,6 +56,7 @@ const Home = () => {
     avatar,
     userAddress,
     userName,
+    setUserName,
     transactions,
     newTransactionModalOpen,
     setNewTransactionModalOpen,
@@ -36,6 +65,14 @@ const Home = () => {
 
   return (
     <div className="flex h-full">
+      <SettingsModal
+        settingsModalOpen={settingsModalOpen}
+        setSettingsModalOpen={setSettingsModalOpen}
+        userAddress={userAddress}
+        userName={userName}
+        setUserName={setUserName}
+      />
+
       {mobileMenu ? (
         <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
           <div className="grid w-full place-items-center">
@@ -47,7 +84,12 @@ const Home = () => {
           </div>
 
           <div>
-            <NavMenu connected={connected} publicKey={publicKey} />
+            <NavMenu
+              connected={connected}
+              publicKey={publicKey}
+              setSettingsModalOpen={setSettingsModalOpen}
+              settingsModalOpen={settingsModalOpen}
+            />
 
             {connected ? (
               <Action setModalOpen={setNewTransactionModalOpen} />
@@ -60,11 +102,15 @@ const Home = () => {
             />
           </div>
 
-          <div className="grid w-full place-items-center">
-            <button className="text-white underline" onClick={handleMenu}>
-              Go back
-            </button>
-          </div>
+          {onMobile ? (
+            <div className="grid w-full place-items-center">
+              <button className="text-white underline" onClick={handleMenu}>
+                Go back
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
 
           <div className="grid place-items-center">
             <Image
@@ -79,8 +125,8 @@ const Home = () => {
       ) : (
         <></>
       )}
-      <main className="flex flex-1 flex-col">
-        <div className="w-full bg-[#7A49CA] py-20">
+      <main className="flex flex-1 flex-col bg-[#7A49CA] lg:ml-[300px]">
+        <div className="w-full py-20">
           <button className="">
             <Image
               src={menuBars}
@@ -114,19 +160,34 @@ const Home = () => {
               userName={userName}
               myKey={publicKey}
               setQrCode={setQrCode}
+              avatar={avatar}
             />
           </div>
+          {connected ? (
+            <div className="mt-16 grid w-full place-items-center">
+              <SearchBar />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
-        <div>
+        <div className="rounded-t-[70px] bg-white">
           {connected ? (
             <TransactionList
               connected={connected}
-              transactions={userTransactions}
+              transactions={transactions}
             />
           ) : (
-            <h1 className="mt-10 text-center text-2xl">
-              Connect your wallet to see your transactions
-            </h1>
+            <div>
+              <Image
+                src={waitImage}
+                alt="Waiting"
+                className="mx-auto mt-32 max-w-[200px]"
+              />
+              <p className="mt-10 text-center text-xl text-gray-400">
+                Connect your wallet to see your transactions
+              </p>
+            </div>
           )}
         </div>
       </main>

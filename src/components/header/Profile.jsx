@@ -11,9 +11,9 @@ const Profile = ({ setModalOpen, avatar, userAddress, userName, connected, publi
 
     return (
         <div className="flex flex-col items-center space-y-3">
-            <div onClick={onProfileOpen} className="h-16 w-16 relative cursor-pointer rounded-full border-2 border-white">
+            <div onClick={onProfileOpen} className="h-20 w-20 relative cursor-pointer rounded-full border-2 border-white">
                 <img className="h-full w-full rounded-full object-cover" src={avatar} />
-                <Image src={scanIcon} className="h-[20px] w-[20px] rounded-full object-cover absolute right-0 bottom-0"/>
+                <Image src={scanIcon} className="h-[30px] w-[30px] rounded-full object-cover absolute right-0 bottom-0"/>
             </div>
 
             <div className="flex flex-col items-center space-y-1">

@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, setQrCode }) => {
+const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, avatar, setQrCode }) => {
     const qrRef = useRef();
     const [handleClick, setHandleClick] = useState(false);
     const [amountInput, setAmountInput] = useState("");
@@ -145,22 +145,37 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, se
                     <div ref={qrRef} />
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-1">
-                    <p className="text-lg font-medium text-gray-800">{userName}</p>
+                    <div className="grid grid-cols-2">
+                        <div className="flex items-center">
+                            <img src={avatar} alt="" srcset="" className="w-20 rounded-full" />
+                        </div>
+                        <div className="my-auto">
+                            <p className="text-lg font-medium text-gray-800">{userName}</p>
+                            <p className="text-sm font-light text-gray-600">Scan to pay</p>
+                        </div>
+                    </div>
 
-                    <p className="text-sm font-light text-gray-600">Scan to pay</p>
-
-                    <div className="py-6">
-                        <input type="number" placeholder="Enter amount" value={amountInput} onChange={(e) => setAmountInput(e.target.value)} className="w-full px-4 py-2 mb-4 border rounded-lg"/>
-
-                        <input type="text" placeholder="Enter your message" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+                    <div className="w-full py-6">
+                        <div className="flex rounded-lg border border-gray-200 p-4">
+                            <label className="text-gray-300" htmlFor="qrPurpose">
+                                Amount:
+                            </label>
+                            <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="qrPurpose" name="qrPurpose" type="number" placeholder="0.5" value={amountInput} onChange={(e) => setAmountInput(e.target.value)}/>
+                        </div>
+                        <div className="flex rounded-lg border border-gray-200 p-4">
+                            <label className="text-gray-300" htmlFor="msgPurpose">
+                                Message:
+                            </label>
+                            <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="msgPurpose" name="msgPurpose" type="text" placeholder="Thanks for your help!" value={messageInput} onChange={(e) => setMessageInput(e.target.value)}/>
+                        </div>
                     </div>
 
                     <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>
                     </button>
 
-                    <button onClick={() => loadOff()} className="w-full rounded-lg bg-[red] py-3 hover:bg-opacity-70">
-                        <span className="font-medium text-white">Cancel</span>
+                    <button onClick={() => loadOff()} className="w-full rounded-lg border-2 border-red-700 py-3 hover:bg-opacity-70">
+                        <span className="font-medium text-red-700">Cancel</span>
                     </button>
                 </div>
             </div>

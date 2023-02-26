@@ -2,14 +2,11 @@ import { ClockIcon, CurrencyDollarIcon, UserCircleIcon, Cog6ToothIcon } from '@h
 import { truncate } from '../../utils/string';
 import { classNames } from '../../utils/classNames';
 require('@solana/wallet-adapter-react-ui/styles.css');
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { useDashy } from '../../hooks/dashy';
 
-const NavMenu = ({ connected, publicKey }) => {
-    const { settingsModalOpen, setSettingsModalOpen } = useDashy();
+const NavMenu = ({ connected, publicKey, setSettingsModalOpen, settingsModalOpen }) => {
 
-    const openModal = () => {
-        setSettingsModalOpen(true);
+    const handleSettings = () => {
+        setSettingsModalOpen(!settingsModalOpen)
     }
 
     const menus = [
@@ -20,14 +17,14 @@ const NavMenu = ({ connected, publicKey }) => {
         },
         {
             icon: CurrencyDollarIcon,
-            item: 'Parties',
+            item: 'My Friends',
             current: false,
         },
         {
             icon: Cog6ToothIcon,
             item: 'Settings',
             current: false,
-            action: openModal,
+            action: handleSettings
         },
     ]
 
