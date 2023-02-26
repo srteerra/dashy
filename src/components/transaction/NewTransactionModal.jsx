@@ -1,10 +1,21 @@
 import { useState } from 'react';
 import {Modal, ModalClose} from '../Modal';
 import { useDashy } from '../../hooks/dashy';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
     const {doTransaction, amount, setAmount, receiver, setReceiver, transactionPurpose, setTransactionPurpose} = useDashy();
-
+    const success = () => toast.success('Transaction completed', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     const onAmountInput = (e) => {
         e.preventDefault();
         const newAmount = e.target.value;
@@ -25,6 +36,7 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
         });
         // Clear states
         setModalOpen(false);
+        success();
         setAmount(0);
         setReceiver("");
         setTransactionPurpose("");
@@ -43,7 +55,7 @@ const NewTransactionModal = ({ modalOpen, setModalOpen }) => {
                         <label className="text-gray-300" htmlFor="receiver">
                             To:
                         </label>
-                        <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="receiver" name="receiver" type="text" placeholder="Name, $Cashtag, SMS, Email" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
+                        <input className="w-full pl-2 font-medium text-gray-600 placeholder-gray-300 outline-none" id="receiver" name="receiver" type="text" placeholder="Address" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
                     </div>
 
                     <div className="flex rounded-lg border border-gray-200 p-4">

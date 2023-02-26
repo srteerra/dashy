@@ -1,6 +1,8 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import "../styles/globals.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const WalletConnectionProvider = dynamic(
   () => import(".././context/WalletConectionProvider"),
@@ -18,6 +20,7 @@ function App({ Component, pageProps }) {
       </Head>
       <WalletConnectionProvider>
         <Component {...pageProps} />
+        <ToastContainer />
       </WalletConnectionProvider>
     </>
   );

@@ -6,33 +6,44 @@ import BigNumber from 'bignumber.js';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useDashy } from "../../hooks/dashy";
 import { useEffect, useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode }) => {
+const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, userName, setQrCode }) => {
     const qrRef = useRef();
     const [handleClick, setHandleClick] = useState(false);
+    const [amountInput, setAmountInput] = useState("");
+    const [messageInput, setMessageInput] = useState("");
     const { transactions, setTransactions } = useDashy();
-
+    const toastId = useRef(null);
+    const trans = () => toastId.current = toast.loading("Please wait...",{closeOnClick: false, closeButton: true,});
+    const update = () => toast.update(toastId.current, {render:"Completed", type: toast.TYPE.SUCCESS, isLoading: false, closeOnClick: true, autoClose: 3000, });
+    const notify = () => toast.update(toastId.current, {render:"Transaction request cancelled", type: toast.TYPE.WARNING, isLoading: false, closeOnClick: true, autoClose: 3000, });
+    
     const { connection } = useConnection();
 
-    console.log(userAddress);
     const loadQr = () => {
         setQrCode(true);
-        setHandleClick(!handleClick);
+        setHandleClick(true);
+        trans();
     }
 
     const loadOff = () => {
         setModalOpen(false);
         setHandleClick(false);
+        notify();
+        
     }
 
     useEffect(() => {
         if(userAddress != ''){
             const recipient = new PublicKey(userAddress);
-            const amount = new BigNumber("0.2");
+            const amount = new BigNumber(amountInput);
             const reference = Keypair.generate().publicKey;
             const label = 'Solana Pay';
-            const message = 'Thanks for help me!';
-
+            const message = messageInput;
+            console.log(amount)
+            console.log(message)
             const urlParams = {
                 recipient,
                 amount,
@@ -43,7 +54,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
             const urlEncoded = encodeURL(urlParams);
 
-            const qr = createQR(urlEncoded, 488, 'transparent');
+            const qr = createQR(urlEncoded, 350, 'transparent');
             if (qrRef.current && amount.isGreaterThan(0)) {
                 qrRef.current.innerHTML = '';
                 qr.append(qrRef.current);
@@ -51,7 +62,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
 
             if(handleClick){
                 const interval = setInterval(async () => {
-                    console.log("waiting for transaction confirmation")
+                    //console.log("waiting for transaction confirmation")
                     try {
                         // Check if there is any transaction for the reference
                         const signatureInfo = await findReference(connection, reference, { finality: 'confirmed' })
@@ -61,14 +72,15 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                             connection,
                             signatureInfo.signature,
                             {
-                                recipient,
-                                amount,
-                                // splToken: usdcAddress,
-                                reference,
+                              recipient,
+                              amount,
+                              // splToken: usdcAddress,
+                              reference,
+                              message
                             },
                             { commitment: 'confirmed' }
-                        )
-        
+                          )
+                          
                         console.log("confirmed, proceed with evil deeds")
         
                         const newID = (transactions.length + 1).toString()
@@ -86,7 +98,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                                 avatar: "https://imageio.forbes.com/specials-images/imageserve/6170e01f8d7639b95a7f2eeb/Sotheby-s-NFT-Natively-Digital-1-2-sale-Bored-Ape-Yacht-Club--8817-by-Yuga-Labs/0x0.png?format=png&width=960",
                                 verified: false,
                             },
-                            description: 'User sent you SOL through Phantom App!',
+                            description: message,
                             transactionDate: new Date(),
                             status: 'Completed',
                             amount: amount,
@@ -96,9 +108,7 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                         console.log(newTransaction, "NEW TRANSACTIONS EXISTS")
                         setTransactions([newTransaction, ...transactions]);
                         setModalOpen(false);
-        
-        
-                        clearInterval(interval)
+                        clear();
                     } catch (e) {
                         if (e instanceof FindReferenceError) {
                             // No transaction found yet, ignore this error
@@ -111,25 +121,39 @@ const TransactionQRModal = ({ modalOpen, setModalOpen, userAddress, setQrCode })
                         }
                         console.error('Unknown error', e)
                     }
-                }, 500)
-                return () => clearInterval(interval)
+                }, 500);
+                
+                return () => {
+                    clearInterval(interval);
+                    notify();
+                }
+
+                function clear(){
+                    clearInterval(interval);
+                    update();
+                }
             }
-    
         }
         return
-    })
+    }, [handleClick]);
 
     return (
         <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+            
             <div >
                 <div className="flex flex-col items-center justify-center space-y-1">
                     <div ref={qrRef} />
                 </div>
-
                 <div className="flex flex-col items-center justify-center space-y-1">
-                    <p className="text-lg font-medium text-gray-800">{truncate(userAddress)}</p>
+                    <p className="text-lg font-medium text-gray-800">{userName}</p>
 
-                    <p className="text-sm font-light text-gray-600">Scan to pay ${truncate(userAddress)}</p>
+                    <p className="text-sm font-light text-gray-600">Scan to pay</p>
+
+                    <div className="py-6">
+                        <input type="number" placeholder="Enter amount" value={amountInput} onChange={(e) => setAmountInput(e.target.value)} className="w-full px-4 py-2 mb-4 border rounded-lg"/>
+
+                        <input type="text" placeholder="Enter your message" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} className="w-full px-4 py-2 border rounded-lg"/>
+                    </div>
 
                     <button onClick={() => loadQr()} className="w-full rounded-lg bg-[#7A49CA] py-3 hover:bg-opacity-70">
                         <span className="font-medium text-white">Load QR code</span>

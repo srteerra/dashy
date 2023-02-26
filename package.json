@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,7 +23,8 @@
     "md5": "^2.3.0",
     "next": "13.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "@heroicons/react": "^2.0.16",

@@ -11,10 +11,16 @@ import { Transaction } from "../data/Transaction";
 import Image from "next/image";
 import logoIcon from "../assets/icon-white.png";
 import logoHorizontal from "../assets/hor-white.png";
+import menuBars from "../assets/menu.png";
 
 const Home = () => {
   const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
   const [qrCode, setQrCode] = useState(false);
+  const [mobileMenu, setmobileMenu] = useState(false);
+
+  const handleMenu = () => {
+    setmobileMenu(!mobileMenu);
+  };
 
   const {
     connected,
@@ -29,43 +35,60 @@ const Home = () => {
   } = useDashy();
 
   return (
-    <div className="flex min-h-screen ">
-      <header className="flex w-[270px] flex-col justify-between bg-[#3F2568] p-12">
-        <div className="grid w-full place-items-center">
-          <Image
-            src={logoHorizontal}
-            alt="Logo"
-            className="w-full max-w-[200px]"
-          />
-        </div>
+    <div className="flex h-full">
+      {mobileMenu ? (
+        <header className="fixed z-20 flex h-screen w-[300px] flex-col justify-between bg-[#3F2568] p-12">
+          <div className="grid w-full place-items-center">
+            <Image
+              src={logoHorizontal}
+              alt="Logo"
+              className="w-full max-w-[200px]"
+            />
+          </div>
 
-        <div>
-          <NavMenu connected={connected} publicKey={publicKey} />
+          <div>
+            <NavMenu connected={connected} publicKey={publicKey} />
 
-          {connected ? (
-            <Action setModalOpen={setNewTransactionModalOpen} />
-          ) : (
-            <></>
-          )}
-          <NewTransactionModal
-            modalOpen={newTransactionModalOpen}
-            setModalOpen={setNewTransactionModalOpen}
-          />
-        </div>
+            {connected ? (
+              <Action setModalOpen={setNewTransactionModalOpen} />
+            ) : (
+              <></>
+            )}
+            <NewTransactionModal
+              modalOpen={newTransactionModalOpen}
+              setModalOpen={setNewTransactionModalOpen}
+            />
+          </div>
 
-        <div className="grid place-items-center">
-          <Image
-            src={logoIcon}
-            alt="Logo"
-            width="20px"
-            height="20px"
-            className="max-w-[100px]"
-          />
-        </div>
-      </header>
+          <div className="grid w-full place-items-center">
+            <button className="text-white underline" onClick={handleMenu}>
+              Go back
+            </button>
+          </div>
 
+          <div className="grid place-items-center">
+            <Image
+              src={logoIcon}
+              alt="Logo"
+              width="20px"
+              height="20px"
+              className="max-w-[100px]"
+            />
+          </div>
+        </header>
+      ) : (
+        <></>
+      )}
       <main className="flex flex-1 flex-col">
         <div className="w-full bg-[#7A49CA] py-20">
+          <button className="">
+            <Image
+              src={menuBars}
+              alt="Menu"
+              className="absolute top-5 left-5 w-[70px] p-3"
+              onClick={handleMenu}
+            />
+          </button>
           <div>
             {connected ? (
               <Profile
@@ -73,6 +96,8 @@ const Home = () => {
                 avatar={avatar}
                 userAddress={userAddress}
                 userName={userName}
+                connected={connected}
+                publicKey={publicKey}
               />
             ) : (
               <Profile
@@ -86,14 +111,13 @@ const Home = () => {
               modalOpen={transactionQRModalOpen}
               setModalOpen={setTransactionQRModalOpen}
               userAddress={userAddress}
+              userName={userName}
               myKey={publicKey}
               setQrCode={setQrCode}
             />
           </div>
         </div>
         <div>
-          <SearchBar />
-
           {connected ? (
             <TransactionList
               connected={connected}
