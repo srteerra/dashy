@@ -69,6 +69,7 @@ export const useDashy = () => {
         userVerify: false,
         userAddress: publicKey.toString(),
         userAvatar: builder.image(avatar),
+        userContacts: [],
       };
 
       client.createIfNotExists(userDoc);
@@ -77,7 +78,7 @@ export const useDashy = () => {
         console.log(users);
         setUserName(users.userName);
 
-        if (!users.userAvatar) {
+        if (users.userAvatar) {
           setAvatar(users.userAvatar.options.source);
         }
       });
