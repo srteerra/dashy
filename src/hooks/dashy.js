@@ -76,7 +76,10 @@ export const useDashy = () => {
       client.getDocument(publicKey.toString()).then((users) => {
         console.log(users);
         setUserName(users.userName);
-        setAvatar(users.userAvatar.options.source);
+
+        if (!users.userAvatar) {
+          setAvatar(users.userAvatar.options.source);
+        }
       });
     }
   }, [connected, publicKey]);

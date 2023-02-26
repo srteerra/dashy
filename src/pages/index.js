@@ -28,7 +28,7 @@ const Home = () => {
   } = useDashy();
 
   return (
-    <div className="flex min-h-screen ">
+    <div className="flex h-full min-h-screen">
       <header className="flex w-[270px] flex-col justify-between bg-[#3F2568] p-12">
         <div className="grid w-full place-items-center">
           <Image
@@ -91,13 +91,16 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <SearchBar />
-
           {connected ? (
-            <TransactionList
-              connected={connected}
-              transactions={transactions}
-            />
+            <div>
+              <div className="my-8 grid w-full place-items-center">
+                <SearchBar />
+              </div>
+              <TransactionList
+                connected={connected}
+                transactions={transactions}
+              />
+            </div>
           ) : (
             <h1 className="mt-10 text-center text-2xl">
               Connect your wallet to see your transactions

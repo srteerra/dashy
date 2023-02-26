@@ -6,7 +6,7 @@ const TransactionItem = ({ id, to, description, transactionDate, amount, toggleT
     }
 
     return (
-        <div onClick={onItemClick} className="grid gap-4 cursor-pointer grid-cols-8 items-center p-4 hover:bg-gray-50">
+        <div onClick={onItemClick} className="grid gap-4 my-6 shadow-lg cursor-pointer grid-cols-8 items-center py-12 px-8 hover:bg-gray-50">
             <div className="col-span-2 flex items-center space-x-4">
                 <img className="h-8 w-8 rounded-full object-cover" src={to.avatar} alt="avatar" />
                 <p className="truncate text-sm text-gray-800">{to.name}</p>
